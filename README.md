@@ -1,4 +1,4 @@
-# angular-es6-webpack
+# MSPOLSLPlanZajec / Front-end
 
 ----
 ## install dependencies
