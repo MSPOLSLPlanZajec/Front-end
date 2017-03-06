@@ -1,0 +1,36 @@
+<md-sidenav class="group-navigation md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+
+    <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Grupa</h1>
+    </md-toolbar>
+    <md-content layout-padding>
+        <!--<md-button ng-click="close()" class="md-primary" hide-gt-md>
+            Close Sidenav Left
+        </md-button>-->
+
+        <div ng-repeat="major in groups">
+            <md-button ng-click="toggleGroup('major', $index)" class="group-button" layout="row" layout-align="start center">
+                <span flex>{{major.name}}</span>
+                <i class="material-icons" ng-show="active.major !== $index">keyboard_arrow_down</i>
+                <i class="material-icons" ng-show="active.major === $index">keyboard_arrow_up</i>
+            </md-button>
+
+            <ul ng-show="active.major === $index">
+                <li ng-repeat="semester in major.groups">
+                    <md-button ng-click="toggleGroup('semester', $index)" class="group-button" layout="row" layout-align="start center">
+                        <span flex>{{semester.name}}</span>
+                        <i class="material-icons" ng-show="active.semester !== $index">keyboard_arrow_down</i>
+                        <i class="material-icons" ng-show="active.semester === $index">keyboard_arrow_up</i>
+                    </md-button>
+
+                    <ul ng-show="active.semester === $index">
+                        <li ng-repeat="group in semester.groups">
+                            <md-button class="group-button" ui-sref="schedule({ id: group.id, type: 'group' })">{{group.name}}</md-button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </md-content>
+
+</md-sidenav>

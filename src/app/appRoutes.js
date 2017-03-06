@@ -5,5 +5,7 @@ module.exports = function ($stateProvider, $locationProvider, $urlRouterProvider
 
     $urlRouterProvider.otherwise('/');
 
-    $stateProvider.state(angular.extend({ name: 'home', url: '/' }, components.home));
+    $stateProvider
+        .state(angular.extend({ name: 'home', url: '/' }, components.home))
+        .state(angular.extend({ name: 'schedule', url: '/schedule/:id/:type' }, components.schedule));
 }

@@ -1,2 +1,3 @@
 import home from './home';
-export default { home };
+import schedule from './schedule';
+export default { home,schedule };
