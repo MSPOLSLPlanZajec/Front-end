@@ -1,4 +1,3 @@
-
 export default async function ($scope, Group, Degree, Teacher) {
     $scope.groups = await Group.get().$promise;
     

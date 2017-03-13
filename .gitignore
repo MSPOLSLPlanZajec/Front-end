@@ -5,3 +5,4 @@ src/vendor.js
 src/assets/scripts/commons.js
 src/index.html
 dist
+src/**/index.js
