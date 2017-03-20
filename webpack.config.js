@@ -13,7 +13,8 @@ module.exports.scripts = [
   'assets/libs/angular-animate/angular-animate.min.js',
   'assets/libs/angular-material/angular-material.min.js',
   'assets/libs/angular-messages/angular-messages.min.js',
-  'assets/libs/angular-ui-router/release/angular-ui-router.min.js'
+  'assets/libs/angular-ui-router/release/angular-ui-router.min.js',
+  'assets/libs/moment/min/moment.min.js'
 ];
 
 module.exports.styles = [
