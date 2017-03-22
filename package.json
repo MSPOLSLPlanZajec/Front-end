@@ -26,7 +26,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
-    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --progress --colors --watch --config webpack_config/development.js",
+    "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --progress --colors --watch --config webpack_config/development.js --history-api-fallback true",
     "dist": "./node_modules/.bin/webpack --progress --colors --config webpack_config/production.js"
   },
   "author": "Tomasz Pierzchała",

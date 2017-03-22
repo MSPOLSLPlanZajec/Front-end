@@ -7,8 +7,8 @@ var global = require("./../webpack.config.js");
 
 var local = {
     output: {
-        path: __dirname,
-        filename: '../src/[name].js'
+        path: '../src',
+        filename: '[name].js',
     },
     plugins: [
         new GenerateIndex(),
@@ -20,8 +20,12 @@ var local = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'commons',
-            filename: '../src/assets/scripts/commons.js'
+            path: '../src',
+            filename: 'assets/scripts/commons.js'
         }),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(JSON.parse(`"${process.env.NODE_ENV}"` || '"development"'))
+        })
     ]
 };
 

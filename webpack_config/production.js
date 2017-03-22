@@ -6,8 +6,6 @@ var CopyAssets = require('../web_modules/copyAssets');
 
 var global = require("./../webpack.config.js");
 
-process.env['NODE_ENV'] = 'production';
-
 var local = {
     output: {
         path: __dirname,
@@ -29,6 +27,9 @@ var local = {
         new webpack.optimize.UglifyJsPlugin({
           exclude: /\app\.js$/,
           warnings: false
+        }),
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(JSON.parse(`"${process.env.NODE_ENV}"` || '"production"'))
         })
     ]
 };
