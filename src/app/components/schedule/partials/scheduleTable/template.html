@@ -10,16 +10,18 @@
 			<li class="events-group" ng-repeat="day in schedule.schedule">
 				<div class="top-info"><span>{{getDayName($index)}}</span></div>
 
-				<ul>
-					<li class="single-event" ng-repeat="lesson in day" ng-style="{'top': getItemPosition(lesson.startsAt), 'height': getItemHeight(lesson.duration)}"
+				<ul ng-style="{height : fullHeight}">
+					<li class="single-event" ng-repeat="lesson in day" ng-style="{'top' : getItemPosition(lesson.startsAt), 'height' : getItemHeight(lesson.duration)}"
 						ng-class="lesson.type">
-						<a href="#0">
+						<div class="event-inner">
 							<div class="event-name">{{lesson.name}}</div>
-							<div class="event-meta">{{lesson.teacher.name}}</div>
-							<div class="event-meta">{{lesson.type}} / {{lesson.classroom.name}}</div>
-						</a>
-			</li>
-			</ul>
+							<div class="event-meta">
+								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{lesson.teacher.name}}</a>
+								<div>{{lesson.type}} / {{lesson.classroom.name}}</div>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</li>
 
 			<!-- additional li.events-group here -->

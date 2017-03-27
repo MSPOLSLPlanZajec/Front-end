@@ -5,7 +5,6 @@ Main Components
 -------------------------------- */
 .cd-schedule {
   position: relative;
-  margin: 2em 0;
   overflow: hidden;
 
   ul {
@@ -22,9 +21,8 @@ Main Components
 
 @media only screen and (min-width: 800px) {
   .cd-schedule {
-    width: 90%;
+    width: 100%;
     max-width: 1400px;
-    margin: 2em auto;
   }
   .cd-schedule::after {
     clear: both;
@@ -74,7 +72,7 @@ Main Components
 
 @media only screen and (min-width: 1000px) {
   .cd-schedule .timeline li::after {
-    width: '~calc(100% - 60px)';
+    width: ~'calc(100% - 66px)';
     left: 60px;
   }
   .cd-schedule .timeline li span {
@@ -148,7 +146,7 @@ Main Components
   margin-right: 5%;
 }
 
-.cd-schedule .events .single-event a {
+.cd-schedule .events .single-event .event-inner {
   display: block;
   height: 100%;
   padding: .8em;
@@ -290,4 +288,13 @@ Main Components
   font-size: 10px; 
   font-weight: 300;
   padding: 3px 0;
+
+  a {
+    color: #fff;
+    display: block;
+  }
+
+  .teacher-link {
+    margin-bottom: 3px;
+  }
 }

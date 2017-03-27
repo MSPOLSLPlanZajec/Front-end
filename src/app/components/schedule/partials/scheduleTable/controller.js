@@ -1,11 +1,11 @@
 export default function ($scope) {
     var unitHeight = 15;
+    var tenHours = 4 * 10;
 
     var getHours = () => {
         var hours = [];
-        var tenHours = 4 * 10;
 
-        for (var i = 0; i <= tenHours; i++) {
+        for (var i = 0; i < tenHours; i++) {
             var hour = moment($scope.baseTime).add(i * 15, 'minutes');
             hours.push(hour);
         }
@@ -21,4 +21,6 @@ export default function ($scope) {
 
     $scope.getItemPosition = (startsAt) => `${startsAt * unitHeight}px`;
     $scope.getItemHeight = (duration) => `${duration * unitHeight}px`;
+
+    $scope.fullHeight = `${tenHours * unitHeight}px`;
 }
