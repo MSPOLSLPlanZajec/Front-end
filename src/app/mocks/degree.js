@@ -1,8 +1,9 @@
 module.exports = {
     get: [
         'mgr',
-        'mgr inż',
-        'dr inż',
-        'dr hab. inż.'
+        'mgr inż.',
+        'dr inż.',
+        'dr hab. inż.',
+        'prof.'
     ]
 }

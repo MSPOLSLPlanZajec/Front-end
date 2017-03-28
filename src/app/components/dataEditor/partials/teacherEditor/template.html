@@ -1,0 +1,74 @@
+<md-card id="editTeacherCard">
+  <md-card-title>
+    <span class="md-headline">Edytuj istniejącego nauczyciela</span>
+  </md-card-title>
+  <md-card-content>
+    <form name="editTeacherForm" ng-submit="editTeacher()" novalidate>
+    <div layout-gt-sm="row" layout-padding>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Nauczyciel</label>
+        <md-select ng-model="selectedTeacher">
+          <md-option ng-value="teacher" ng-repeat="teacher in teachers | orderBy: ['name', 'surname']">
+            {{[teacher.titles, teacher.name, teacher.surname].join(' ')}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Tytuł</label>
+        <md-select ng-model="selectedTeacher.titles">
+          <md-option ng-value="degree" ng-repeat="degree in degrees">
+            {{degree}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Imię</label>
+        <input ng-model="selectedTeacher.name" type="text" required ng-minlength="2" ng-maxlength="45">
+      </md-input-container>
+
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>Nazwisko</label>
+        <input ng-model="selectedTeacher.surname" type="text" required ng-minlength="2" ng-maxlength="45">
+      </md-input-container>
+      <span>
+            <md-button type="submit" ng-disabled="editTeacherForm.$invalid" class="md-primary md-raised">Zapisz</md-button>
+        </span>
+    </div>
+    </form>
+  </md-card-content>
+</md-card>
+
+<md-card id="addTeacherCard">
+  <md-card-title>
+    <span class="md-headline">Dodaj nowego nauczyciela</span>
+  </md-card-title>
+  <md-card-content>
+    <form name="addTeacherForm" ng-submit="addTeacher(addTeacherForm.$valid)" novalidate>
+      <div layout-gt-sm="row" layout-padding>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Tytuł</label>
+          <md-select ng-model="newTeacher.titles" required>
+            <md-option ng-value="degree" ng-repeat="degree in degrees">
+              {{degree}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Imię</label>
+          <input ng-model="newTeacher.name" type="text" required ng-minlength="2" ng-maxlength="45">
+        </md-input-container>
+
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Nazwisko</label>
+          <input ng-model="newTeacher.surname" type="text" required ng-minlength="2" ng-maxlength="45">
+        </md-input-container>
+        <span>
+            <md-button type="submit" ng-disabled="addTeacherForm.$invalid" class="md-primary md-raised">Dodaj</md-button>
+        </span>
+      </div>
+    </form>
+  </md-card-content>
+</md-card>
