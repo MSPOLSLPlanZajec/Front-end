@@ -1,56 +1,30 @@
 <div class="cd-schedule">
 	<div class="timeline">
 		<ul>
-			<li><span>09:00</span></li>
-			<li><span>09:30</span></li>
-			<li><span>10:00</span></li>
-			<li><span>10:30</span></li>
-			<!-- additional elements here -->
+			<li ng-repeat="time in hours"><span>{{time.format('H:mm')}}</span></li>
 		</ul>
 	</div>
- 
+
 	<div class="events">
 		<ul>
-			<li class="events-group" ng-repeat="day in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']">
-				<div class="top-info"><span>{{day}}</span></div>
- 
-				<ul>
-					{{$index % 2 ? 'test' : ''}}
-					<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
-						<a href="#0">
-							<em class="event-name">Abs Circuit</em>
-						</a>
-					</li>
+			<li class="events-group" ng-repeat="day in schedule.schedule">
+				<div class="top-info"><span>{{getDayName($index)}}</span></div>
 
-					<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
-						<a href="#0">
-							<em class="event-name">Abs Circuit</em>
-						</a>
+				<ul ng-style="{height : fullHeight}">
+					<li class="single-event" ng-repeat="lesson in day" ng-style="{'top' : getItemPosition(lesson.startsAt), 'height' : getItemHeight(lesson.duration)}"
+						ng-class="lesson.type">
+						<div class="event-inner">
+							<div class="event-name">{{lesson.name}}</div>
+							<div class="event-meta">
+								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{lesson.teacher.name}}</a>
+								<div>{{lesson.type}} / {{lesson.classroom.name}}</div>
+							</div>
+						</div>
 					</li>
- 
-					<!-- other events here -->
 				</ul>
 			</li>
- 
+
 			<!-- additional li.events-group here -->
 		</ul>
-	</div>
- 
-	<div class="event-modal">
-		<header class="header">
-			<div class="content">
-				<span class="event-date"></span>
-				<h3 class="event-name"></h3>
-			</div>
- 
-			<div class="header-bg"></div>
-		</header>
- 
-		<div class="body">
-			<div class="event-info"></div>
-			<div class="body-bg"></div>
-		</div>
- 
-		<a href="#0" class="close">Close</a>
 	</div>
 </div>
