@@ -1,25 +1,35 @@
 export default async function ($scope, Degree, Teacher, FormUtils) {
-    reload();
+    $scope.$watch('args', value => init());
 
-    
-    async function reload() {
-            $scope.teachers = await Teacher.get().$promise;
-            $scope.degrees = await Degree.get().$promise;
-            $scope.$apply();
-
-            $scope.selectedTeacher = $scope.teachers[0];
-            $scope.selectedDegree = $scope.degrees[$scope.degrees.indexOf($scope.selectedTeacher.titles)];
-            $scope.newTeacher = {};
+    function init() {
+        $scope.teachers = $scope.args.teachers;
+        $scope.degrees = $scope.args.degrees;
+        $scope.selectedTeacher = $scope.teachers[0];
+        $scope.newTeacher = {};
     }
 
-    $scope.addTeacher = function() {
-        FormUtils.showSuccessToast('Nauczyciel dodany', '#addTeacherCard');
+    $scope.addTeacher = async function () {
+        try {
+            var teacher = await Teacher.post($scope.newTeacher).$promise;
+            FormUtils.showSuccessToast('Nauczyciel dodany', '#addTeacherCard');
+            updateTeacherEditor(teacher);
+        } catch (e) {
+            FormUtils.showFailureToast('Operacja nie powiodła się', '#addTeacherCard');
+        }
+    }
+
+    $scope.editTeacher = async function () {
+        try {
+            await Teacher.post($scope.selectedTeacher).$promise;
+            FormUtils.showSuccessToast('Zmiany zostały zapisane', '#editTeacherCard');
+        } catch (e) {
+            FormUtils.showFailureToast('Nie udało się zapisać zmian', '#editTeacherCard');
+        }
+    }
+
+    function updateTeacherEditor(newTeacher) {
+        $scope.teachers.push(newTeacher);
         FormUtils.clearForm($scope.addTeacherForm)
-        reload();
-    }
-
-    $scope.editTeacher = function() {
-        FormUtils.showSuccessToast('Zmiany zostały zapisane', '#editTeacherCard');
-        reload();
+        $scope.newTeacher = { id: null };
     }
 }

@@ -1,10 +1,10 @@
 export default function () {
     return {
         get: function () {
-            return App.mockPromise(App.mocks.teacher.get);
+            return App.mockPromise(App.mocks.classroom.get);
         },
-        post: function (teacher){
-            var response = JSON.parse(JSON.stringify(teacher));
+        post: function (classroom){
+            var response = JSON.parse(JSON.stringify(classroom));
             response.id = "123"
             return App.mockPromise(response);
         }

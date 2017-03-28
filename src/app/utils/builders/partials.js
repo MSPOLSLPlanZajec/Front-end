@@ -6,14 +6,18 @@ export default function buildPartials(name, component) {
         return {
             restrict: 'E',
             controller,
-            template
+            template,
+            link: function (scope, element, attrs) {
+                if (attrs.args) {
+                    scope.args = scope.$eval(attrs.args);
+                }
+            }
         }
     });
 
     if (component.partials) {
         for (var componentName in component.partials) {
-            var component = component.partials[componentName];
-            buildPartials(componentName, component);
+            buildPartials(componentName, component.partials[componentName]);
         }
     }
 };

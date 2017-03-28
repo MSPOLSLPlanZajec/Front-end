@@ -8,7 +8,7 @@
       <md-input-container class="md-block" flex-gt-sm>
         <label>Nauczyciel</label>
         <md-select ng-model="selectedTeacher">
-          <md-option ng-value="teacher" ng-repeat="teacher in teachers">
+          <md-option ng-value="teacher" ng-repeat="teacher in teachers | orderBy: ['name', 'surname']">
             {{[teacher.titles, teacher.name, teacher.surname].join(' ')}}
           </md-option>
         </md-select>
