@@ -1,4 +1,4 @@
-export default async function ($scope, Classroom, Degree, Department, Teacher) {
+export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher) {
     loadData();
 
     async function loadData() {
@@ -7,6 +7,7 @@ export default async function ($scope, Classroom, Degree, Department, Teacher) {
                 classrooms: await Classroom.get().$promise,
                 degrees: await Degree.get().$promise,
                 departments: await Department.get().$promise,
+                faculties: await Faculty.get().$promise,
                 teachers: await Teacher.get().$promise
             }
             $scope.$apply();
