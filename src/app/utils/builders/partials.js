@@ -6,12 +6,7 @@ export default function buildPartials(name, component) {
         return {
             restrict: 'E',
             controller,
-            template,
-            link: function (scope, element, attrs) {
-                if (attrs.args) {
-                    scope.args = scope.$eval(attrs.args);
-                }
-            }
+            template
         }
     });
 

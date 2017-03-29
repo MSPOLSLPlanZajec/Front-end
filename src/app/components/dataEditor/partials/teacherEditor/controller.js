@@ -1,9 +1,9 @@
 export default async function ($scope, Degree, Teacher, FormUtils) {
-    $scope.$watch('args', value => init());
+    $scope.$watch('data', value => init());
 
     function init() {
-        $scope.teachers = $scope.args.teachers;
-        $scope.degrees = $scope.args.degrees;
+        $scope.teachers = $scope.data.teachers;
+        $scope.degrees = $scope.data.degrees;
         $scope.selectedTeacher = $scope.teachers[0];
         $scope.newTeacher = {};
     }

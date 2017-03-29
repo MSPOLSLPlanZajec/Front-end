@@ -2,7 +2,7 @@
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
       <md-tab label="Nauczyciele">
-        <teacher-editor ng-if='data' args='data'></teacher-editor>
+        <teacher-editor ng-if='data' ng-model="data"></teacher-editor>
       </md-tab>
       <md-tab label="Wydziały">
         <department-editor ng-if='data' args='data'></department-editor>

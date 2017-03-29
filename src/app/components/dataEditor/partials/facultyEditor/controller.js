@@ -1,8 +1,8 @@
 export default async function ($scope, Faculty, FormUtils) {
-    $scope.$watch('args', value => init());
+    $scope.$watch('data', value => init());
 
     function init() {
-        $scope.faculties = $scope.args.faculties;
+        $scope.faculties = $scope.data.faculties;
         $scope.selectedFaculty = $scope.faculties[0];
         $scope.newFaculty = { id: null };
     }
