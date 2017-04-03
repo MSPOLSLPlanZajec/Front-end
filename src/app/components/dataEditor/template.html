@@ -1,0 +1,18 @@
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Nauczyciele">
+        <teacher-editor ng-if='data' ng-model="data"></teacher-editor>
+      </md-tab>
+      <md-tab label="Wydziały">
+        <department-editor ng-if='data' args='data'></department-editor>
+      </md-tab>
+      <md-tab label="Sale">
+        <classroom-editor ng-if='data' args='data'></classroom-editor>
+      </md-tab>
+      <md-tab label="Kierunki">
+        <faculty-editor ng-if='data' args='data'></faculty-editor>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>

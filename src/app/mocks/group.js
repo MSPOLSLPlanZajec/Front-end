@@ -2,7 +2,7 @@ module.exports = {
     get: [
         {
             name: 'Informatyka',
-            id: 'a7624e63-90a7-4dce-b6e8-ff46626a0064',
+            d: 'a7624e63-90a7-4dce-b6e8-ff46626a0064',
             groups: [
                 {
                     name: 'Semestr 1',
