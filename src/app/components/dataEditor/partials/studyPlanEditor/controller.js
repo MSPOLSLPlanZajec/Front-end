@@ -1,13 +1,16 @@
 export default async function ($scope, Faculty, FormUtils) {
-    $scope.$watch('data', value => init());
-    $scope.subjTypes = [
-        { value: 'lecture', showAs: "Wykład" },
-        { value: 'laboratories', showAs: "Laboratoria" },
-        { value: 'exercise', showAs: "ćwiczenia" }
-    ];
-    $scope.subjDurations = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    init();
+
+    
 
     function init() {
+        $scope.subjDurations = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+        $scope.subjTypes = [
+            { value: 'lecture', showAs: "Wykład" },
+            { value: 'laboratories', showAs: "Laboratoria" },
+            { value: 'exercise', showAs: "ćwiczenia" }
+        ];
+        
         $scope.studyPlan = {
             major: '',
             semesters: []

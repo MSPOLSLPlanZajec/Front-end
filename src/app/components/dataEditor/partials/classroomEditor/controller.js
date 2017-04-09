@@ -1,11 +1,15 @@
-export default async function ($scope, Classroom, Department, FormUtils) {
-    $scope.$watch('data', value => init());
+export default async function ($scope, Classroom, Department, FormUtils, DataEditorSharedData) {
+    init()
 
     function init(){
-        $scope.classrooms = $scope.data.classrooms;
-        $scope.departments = $scope.data.departments;
-        $scope.selectedClassroom = $scope.classrooms[0];
-        $scope.newClassroom = { id: null };
+        $scope.data = DataEditorSharedData.getData();
+        if($scope.data){
+            $scope.classrooms = $scope.data.classrooms;
+            $scope.departments = $scope.data.departments;
+            $scope.selectedClassroom = $scope.classrooms[0];
+            $scope.newClassroom = { id: null };
+        }
+
     }
 
     $scope.addClassroom = async function () {

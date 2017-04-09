@@ -1,7 +1,8 @@
-export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher) {
+export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher, DataEditorSharedData) {
     loadData();
 
     async function loadData() {
+        DataEditorSharedData.downloadData();
         try {
             $scope.data = {
                 classrooms: await Classroom.get().$promise,
