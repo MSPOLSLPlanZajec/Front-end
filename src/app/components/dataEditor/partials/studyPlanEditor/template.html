@@ -1,0 +1,56 @@
+<md-card id="addNewStudyPlan">
+   <md-card-title>
+      <span class="md-headline">Dodaj nowy plan</span>
+   </md-card-title>
+   <md-card-content>
+      <form name="addStudyPlanForm" ng-submit="addStudyPlan()" novalidate>
+         <md-input-container class="md-block" flex-gt-sm>
+            <label>Nazwa kierunku</label>
+            <input ng-model="studyPlan.major" type="text" required ng-minlength="2" ng-maxlength="45">
+         </md-input-container>
+         <span>
+            <md-button type="button" ng-click="addSemester()" class="md-primary md-raised">Dodaj semestr</md-button>
+         </span>
+         <md-tabs md-dynamic-height md-border-bottom>
+            <span ng-repeat="sem in studyPlan.semesters">
+            <md-tab>
+               <md-tab-label>{{sem.name}}</md-tab-label>
+               <md-tab-body>
+                  <md-button type="button" ng-click="addSubject(sem.subjects)" class="md-primary md-raised">Dodaj przedmiot</md-button>
+                  <div ng-repeat="subject in sem.subjects" layout-gt-sm="row" layout-padding>
+                     <md-input-container class="md-block" flex-gt-sm>
+                        <label>Nazwa</label>
+                        <input ng-model="subject.name" type="text" required ng-minlength="3" ng-maxlength="45" required>
+                     </md-input-container>
+                     <md-input-container class="md-block" flex-gt-sm>
+                        <label>Nauczyciel</label>
+                        <md-select ng-model="subject.teacher">
+                           <md-option ng-value="teacher" ng-repeat="teacher in data.teachers | orderBy: ['name', 'surname']">
+                              {{[teacher.titles, teacher.name, teacher.surname].join(' ')}}
+                           </md-option>
+                        </md-select>
+                     </md-input-container>
+                     <md-input-container class="md-block" flex-gt-sm>
+                        <label>Typ zajęć</label>
+                        <md-select ng-model="subject.type">
+                           <md-option ng-value="type.value" ng-repeat="type in subjTypes">
+                              {{type.showAs}}
+                           </md-option>
+                        </md-select>
+                     </md-input-container>
+                     <md-input-container  class="minimal-width" class="md-block" flex-gt-sm>
+                        <label>Długość</label>
+                        <md-select ng-model="subject.duration" ng-init="subject.duration=subjDurations[6]">
+                           <md-option ng-value="duration" ng-repeat="duration in subjDurations">
+                              {{getDurationString(duration)}}
+                           </md-option>
+                        </md-select>
+                     </md-input-container>
+                  </div>
+               </md-tab-body>
+            </md-tab>
+            <span>
+         </md-tabs>
+      </form>
+   </md-card-content>
+</md-card>
