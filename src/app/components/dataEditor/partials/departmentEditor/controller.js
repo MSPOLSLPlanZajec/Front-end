@@ -1,7 +1,7 @@
 export default async function ($scope, Department, FormUtils, DataEditorSharedData) {
     init();
 
-    function init() {
+    function init(){
         $scope.data = DataEditorSharedData.getData();
         if($scope.data){
             $scope.departments = $scope.data.departments;

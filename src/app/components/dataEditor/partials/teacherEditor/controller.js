@@ -1,7 +1,7 @@
 export default async function ($scope, Degree, Teacher, FormUtils, DataEditorSharedData) {
-    init();
+    init()
 
-    function init() {
+    function init(){
         $scope.data = DataEditorSharedData.getData();
         if($scope.data){
             $scope.teachers = $scope.data.teachers;

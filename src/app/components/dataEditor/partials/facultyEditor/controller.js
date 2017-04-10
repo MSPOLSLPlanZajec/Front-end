@@ -1,7 +1,7 @@
 export default async function ($scope, Faculty, FormUtils, DataEditorSharedData) {
-    $scope.$watch('data', value => init());
+    init();
 
-    function init() {
+    function init(){
         $scope.data = DataEditorSharedData.getData();
         if($scope.data){
             $scope.faculties = $scope.data.faculties;

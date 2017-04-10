@@ -5,7 +5,7 @@
   <md-card-content>
     <form name="editClassroomForm" ng-submit="editClassroom()" novalidate>
     <div layout-gt-sm="row" layout-padding>
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Sala</label>
         <md-select ng-model="selectedClassroom">
           <md-option ng-value="classroom" ng-repeat="classroom in classrooms | orderBy: ['department', 'number']">
@@ -14,7 +14,7 @@
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Wydział</label>
         <md-select ng-model="selectedClassroom.department">
           <md-option ng-value="department.name" ng-repeat="department in departments">
@@ -23,7 +23,7 @@
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Numer</label>
         <input ng-model="selectedClassroom.number" type="text" required ng-minlength="1" ng-maxlength="45">
       </md-input-container>
@@ -43,7 +43,7 @@
   <md-card-content>
     <form name="addClassroomForm" ng-submit="addClassroom()" novalidate>
       <div layout-gt-sm="row" layout-padding>
-        <md-input-container class="md-block" flex-gt-sm>
+        <md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Wydział</label>
           <md-select ng-model="newClassroom.department" required>
             <md-option ng-value="department.name" ng-repeat="department in departments | orderBy : name">
@@ -52,7 +52,7 @@
           </md-select>
         </md-input-container>
 
-        <md-input-container class="md-block" flex-gt-sm>
+        <md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Numer</label>
           <input ng-model="newClassroom.number" type="text" required ng-minlength="1" ng-maxlength="45">
         </md-input-container>

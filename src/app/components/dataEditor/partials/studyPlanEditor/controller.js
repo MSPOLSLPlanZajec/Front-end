@@ -1,20 +1,8 @@
-export default async function ($scope, Faculty, FormUtils) {
-    init();
+export default async function ($scope, StudyPlan, FormUtils) {
 
-    
-
-    function init() {
-        $scope.subjDurations = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-        $scope.subjTypes = [
-            { value: 'lecture', showAs: "Wykład" },
-            { value: 'laboratories', showAs: "Laboratoria" },
-            { value: 'exercise', showAs: "ćwiczenia" }
-        ];
-        
-        $scope.studyPlan = {
-            major: '',
-            semesters: []
-        }
+    $scope.studyPlan = {
+        major: '',
+        semesters: []
     }
 
     $scope.addSemester = function () {
@@ -37,11 +25,50 @@ export default async function ($scope, Faculty, FormUtils) {
         subjectArray.push(emptySubject);
     }
 
-    $scope.getDurationString = function (segmentCount) {
-        var totalMinutes = segmentCount * 15;
-        var hours = Math.floor(totalMinutes / 60);
-        var minutes = totalMinutes % 60;
+    $scope.submitStudyPlan = async function () {
+        try {
+            await StudyPlan.post($scope.selectedDepartment).$promise;
+            FormUtils.showSuccessToast('Plan został zapisany', '#addNewStudyPlan');
+        } catch (e) {
+            FormUtils.showFailureToast('Nie udało się zapisać planu', '#addNewStudyPlan');
+        }
 
-        return hours + ":" + (minutes > 9 ? minutes : "0" + minutes);
+        $scope.studyPlan = {
+            major: '',
+            semesters: []
+        }
+    }
+
+    $scope.getStudyPlanReadyToSend = function(){
+        var cleanMajor = (major) => {
+            major = major.name;
+            return major;
+        }
+        var cleanSubject = (subject) => {
+            subject.teacher_id = subject.teacher.id;
+            delete subject.teacher;
+            subject.type = subject.type.value;
+            return subject;
+        }
+
+        var cleanGroup = (group) => {
+            group.subjects = group.subjects.map(s => cleanSubject(s))
+            if(group.subgroups.length > 0)
+                group.subgroups = group.subgroups.map(s => cleanGroup(s))
+            return group;
+        }
+
+        var plan = JSON.parse(angular.toJson($scope.studyPlan));
+        plan.major = cleanMajor(plan.major) 
+        plan.semesters = plan.semesters.map(s => cleanGroup(s))
+        return plan;
+    }
+
+    $scope.logStudyPlanReadyToSend = function () {
+        console.log(angular.toJson($scope.getStudyPlanReadyToSend($scope.studyPlan), 3))
+    }
+
+    $scope.logStudyPlan = function () {
+        console.log(angular.toJson($scope.studyPlan, 3))
     }
 }

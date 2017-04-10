@@ -1,5 +1,5 @@
 export default async function ($scope, Classroom, Department, FormUtils, DataEditorSharedData) {
-    init()
+    init();
 
     function init(){
         $scope.data = DataEditorSharedData.getData();
