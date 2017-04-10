@@ -8,5 +8,5 @@ module.exports = function ($stateProvider, $locationProvider, $urlRouterProvider
     $stateProvider
         .state(angular.extend({ name: 'home', url: '/' }, components.home))
         .state(angular.extend({ name: 'schedule', url: '/schedule/:id/:type' }, components.schedule))
-        .state(angular.extend({ name: 'data-editor', url: '/data-editor' }, components.dataEditor));
+        .state(angular.extend({ name: 'dataEditor', url: '/data-editor' }, components.dataEditor));
 }

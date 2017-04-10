@@ -1,0 +1,9 @@
+<div style="padding: 30px;">
+    <h2 class="md-title">Not scheduled lessons for {{teacher.name}}</h2>
+
+    <div ng-repeat="lesson in schedule.notScheduled">
+        <md-button ng-click="displaySuggestions(lesson)" layout="row" layout-align="start center" layout-fill>
+            <span flex="100">{{lesson.name}}, {{lesson.type}}</span>
+        </md-button>
+    </div>
+</div>

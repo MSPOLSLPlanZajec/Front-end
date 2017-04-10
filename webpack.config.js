@@ -22,7 +22,7 @@ module.exports.styles = [
 ];
 
 module.exports.config = {
-  cache: false,
+  cache: true,
   target: 'web',
   entry: {
     app: './src/app/app.js',
