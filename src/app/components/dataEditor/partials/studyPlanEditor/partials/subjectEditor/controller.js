@@ -10,6 +10,7 @@ export default async function ($scope, DataEditorSharedData) {
     $scope.subjDurations = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     function init() {
+        console.log("init" + "  " + $scope.$id)
         $scope.data = DataEditorSharedData.getData();
         $scope.subject.name = '';
         $scope.subject.teacher = $scope.data.teachers[0];

@@ -1,4 +1,4 @@
-export default async function ($scope) {
+export default async function ($scope, FormUtils) {
     init();
 
     function init() {
@@ -11,11 +11,16 @@ export default async function ($scope) {
 
 
     $scope.addGroup = function (groupName) {
-        if (groupName.length >= 2 && groupName.length <= 45 && groupNameAvailable(groupName)) {
+        if (groupName.length < 1 || groupName.length > 45)
+            FormUtils.showFailureToast("Nazwa grupy musi mieć 1-45 znaków", `#group-adder-${$scope.$id}`);
+        else if (!groupNameAvailable(groupName))
+            FormUtils.showFailureToast("Grupa o takiej nazwie juz istnieje", `#group-adder-${$scope.$id}`);
+        else {
             $scope.semester.subgroups.push({
                 name: groupName,
                 subjects: [],
-                subgroups: []
+                subgroups: [],
+                depth: 1
             });
         }
     }

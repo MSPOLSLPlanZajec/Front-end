@@ -4,35 +4,31 @@
   </md-card-title>
   <md-card-content>
     <subject-editor ng-repeat="subject in subgroup.subjects" ng-model="subject" layout-gt-sm="row" layout-padding></subject-editor>
-    <md-button type="button" ng-click="addSubject()" class="md-primary md-raised">Dodaj przedmiot</md-button>
+    <md-button type="button" ng-click="addSubject()" class="add-element-button md-primary md-raised">Dodaj przedmiot</md-button>
 </md-card>
 
-<!--
-  TODO, RECURSION ERROR
-<md-card ng-attr-id="subgroups-card">
-  <md-card-title>
-    <span class="md-headline">Grupy</span>
-  </md-card-title>
-  <md-card-content>
-    <md-tabs class="group-wrapper" md-dynamic-height md-border-bottom>
-      <span ng-repeat="subSubgroup in subgroup.subgroups">
-            <md-tab>
-               <md-tab-label>{{subSubgroup.name}}</md-tab-label>
-               <md-tab-body>
-                  <group-editor ng-model="subSubgroup"></semester-editor>
-               </md-tab-body>
-            </md-tab>
-    <span>
-</md-tabs>
-
-<div layout-gt-sm="row" layout-padding>
-      <div flex-gt-sm>
-          <md-button type="button" ng-click="addSubGroup(newGroupName)" class="md-block md-primary md-raised">Dodaj grupę</md-button>
+<md-card id="group-adder-{{::$id}}" ng-if="subgroup.depth < 2">
+   <md-card-title>
+      <span class="md-headline">Grupy</span>
+   </md-card-title>
+   <md-card-content>
+   <md-tabs class="group-wrapper" ng-if="subgroup.subgroups.length > 0" md-dynamic-height md-border-bottom>
+      <md-tab ng-repeat="subgroup in subgroup.subgroups">
+         <md-tab-label>{{subgroup.name}}</md-tab-label>
+         <md-tab-body>
+            <group-editor ng-model="subgroup">
+            </semester-editor>
+         </md-tab-body>
+      </md-tab>
+   </md-tabs>
+   </br>
+   <div layout-gt-sm="row" >
+      <div>
+         <md-button type="button" ng-click="addGroup(newGroupName)" class="add-element-button md-block md-primary md-raised">Dodaj podgrupę</md-button>
       </div>
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-        <label>Nazwa grupy</label>
-        <input ng-model="newGroupName" type="text">
+         <label>Nazwa grupy</label>
+         <input ng-model="newGroupName" type="text" ng-minlength="1" ng-maxlength="45">
       </md-input-container>
-      </div>
+   </div>
 </md-card>
--->
