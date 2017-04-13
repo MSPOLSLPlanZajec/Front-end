@@ -3,11 +3,15 @@ export default async function ($scope, FormUtils) {
 
     function init() {
         $scope.newGroupName = "";
-        console.log("DEPTH" + $scope.subgroup.depth)
     }
 
+    $scope.$on('deleteSubject', (event, subject) => {
+        var delIndex = $scope.model.subjects.indexOf(subject);
+        $scope.model.subjects.splice(delIndex, 1);        
+    });
+
     $scope.addSubject = function () {
-            $scope.subgroup.subjects.push({});
+            $scope.model.subjects.push({});
     }
 
     $scope.addGroup = function (groupName) {
@@ -16,18 +20,24 @@ export default async function ($scope, FormUtils) {
         else if (!groupNameAvailable(groupName))
             FormUtils.showFailureToast("Grupa o takiej nazwie juz istnieje", `#group-adder-${$scope.$id}`);
         else {
-            $scope.subgroup.subgroups.push({
+            $scope.model.subgroups.push({
                 name: groupName,
                 subjects: [],
                 subgroups: [],
-                depth: $scope.subgroup.depth + 1
+                depth: $scope.model.depth + 1
             });
         }
         
     } 
 
+    function getImportantData(){
+        var data = {};
+        data.subjects = $scope.model.subjects.map(subj => subj.getImportantData());
+        data.subgroups = $scope.model.subgroups.map(subg => subg.getImportantData());
+    }
+
         function groupNameAvailable(groupName) {
-        var existingGroups = $scope.subgroup.subgroups;
+        var existingGroups = $scope.model.subgroups;
         var numOfSameNameGroups = existingGroups.reduce(function (a, b) {
             return a + (b.name == groupName)
         }, 0);

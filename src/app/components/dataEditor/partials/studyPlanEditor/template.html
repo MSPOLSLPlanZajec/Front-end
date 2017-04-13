@@ -7,7 +7,7 @@
             <md-input-container class="md-block short-input-container" flex-gt-sm>
                 <label>Nazwa kierunku</label>
                 <md-select ng-model="studyPlan.major" required>
-                    <md-option ng-value="faculty" ng-repeat="faculty in data.faculties">
+                    <md-option ng-value="faculty.name" ng-repeat="faculty in data.faculties">
                         {{faculty.name}}
                     </md-option>
                 </md-select>
@@ -17,15 +17,15 @@
             <md-button type="button" ng-click="logStudyPlan()" class="md-primary md-raised">LOG</md-button>
             <md-button type="button" ng-click="logStudyPlanReadyToSend()" class="md-primary md-raised">LOG2</md-button>
             <md-tabs md-dynamic-height md-border-bottom ng-if="studyPlan.semesters.length > 0">
-                <md-tab ng-repeat="semester in studyPlan.semesters">
-                    <md-tab-label>{{semester.name}}</md-tab-label>
+                <md-tab ng-repeat="model in studyPlan.semesters">
+                    <md-tab-label>{{ model.name }}</md-tab-label>
                     <md-tab-body>
-                        <semester-editor ng-model="semester"></semester-editor>
+                        <group-editor ng-model="model"></group-editor>
                     </md-tab-body>
                 </md-tab>
             </md-tabs>
             <span>
-            <md-button type="submit" ng-disabled="addStudyPlanForm.$invalid || studyPlan.semesters.length == 0" class="md-primary md-raised">Zapisz</md-button>
+            <md-button type="submit" ng-if="studyPlan.semesters.length > 0" ng-disabled="addStudyPlanForm.$invalid" class="md-primary md-raised md-block">Zapisz</md-button>
         </form>
     </md-card-content>
 </md-card>

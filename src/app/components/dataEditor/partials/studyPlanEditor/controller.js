@@ -7,22 +7,13 @@ export default async function ($scope, StudyPlan, FormUtils) {
 
     $scope.addSemester = function () {
         var semCount = $scope.studyPlan.semesters.length;
-        var emptySemester = {
+        var semester = {
             name: `SEMESTR ${semCount + 1}`,
             subjects: [],
-            subgroups: []
+            subgroups: [],
+            depth: 0
         };
-        $scope.studyPlan.semesters.push(emptySemester)
-    }
-
-    $scope.addSubject = function (subjectArray) {
-        var emptySubject = {
-            name: '',
-            teacher: $scope.data.teachers[0],
-            duration: 6,
-            type: $scope.subjTypes[0]
-        };
-        subjectArray.push(emptySubject);
+        $scope.studyPlan.semesters.push(semester)
     }
 
     $scope.submitStudyPlan = async function () {
@@ -39,29 +30,28 @@ export default async function ($scope, StudyPlan, FormUtils) {
         }
     }
 
-    $scope.getStudyPlanReadyToSend = function(){
-        var cleanMajor = (major) => {
-            major = major.name;
-            return major;
-        }
-        var cleanSubject = (subject) => {
-            subject.teacher_id = subject.teacher.id;
-            delete subject.teacher;
-            subject.type = subject.type.value;
-            return subject;
+    $scope.getStudyPlanReadyToSend = function () {
+        var getImportantSubjectData = (subject) => {
+            return {
+                name: subject.name,
+                teacher_id: subject.teacher.id,
+                duration: subject.duration,
+                type: subject.type.value
+            }
         }
 
-        var cleanGroup = (group) => {
-            group.subjects = group.subjects.map(s => cleanSubject(s))
-            if(group.subgroups.length > 0)
-                group.subgroups = group.subgroups.map(s => cleanGroup(s))
-            return group;
+        var getImportantGroupData = (group) => {
+            return {
+                name: group.name,
+                subjects: group.subjects.map(subj => getImportantSubjectData(subj)),
+                subgroups: group.subgroups.map(subg => getImportantGroupData(subg))
+            }
         }
 
-        var plan = JSON.parse(angular.toJson($scope.studyPlan));
-        plan.major = cleanMajor(plan.major) 
-        plan.semesters = plan.semesters.map(s => cleanGroup(s))
-        return plan;
+        return {
+            major: $scope.studyPlan.major,
+            semesters: $scope.studyPlan.semesters.map(sem => getImportantGroupData(sem))
+        }
     }
 
     $scope.logStudyPlanReadyToSend = function () {
