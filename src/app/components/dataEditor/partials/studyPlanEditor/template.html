@@ -5,7 +5,7 @@
     <md-card-content>
         <form name="addStudyPlanForm" ng-submit="submitStudyPlan()" novalidate>
             <md-input-container class="md-block short-input-container" flex-gt-sm>
-                <label>Nazwa kierunku</label>
+                <label>Kierunek</label>
                 <md-select ng-model="studyPlan.major" required>
                     <md-option ng-value="faculty.name" ng-repeat="faculty in data.faculties">
                         {{faculty.name}}
