@@ -1,13 +1,10 @@
 export default function buildPartials(name, component) {
-    var controller = component.controller || function () { };
-    var template = component.template;
+    component.controller = component.controller || function () { };
+
+    var directive = Object.assign({ restrict: 'E' }, component);
 
     App.directive(name, () => {
-        return {
-            restrict: 'E',
-            controller,
-            template
-        }
+        return directive;
     });
 
     if (component.partials) {

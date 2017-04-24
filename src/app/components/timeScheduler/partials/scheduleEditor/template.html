@@ -1,0 +1,11 @@
+<div layout="row" style="padding-top: 15px;">
+    <div flex="20">
+        <h4 style="margin-top: 0;">Przydziel zajęcia</h4>
+        <div ng-repeat="course in teacher.schedule.notScheduled">
+            {{course.name}} - {{course.type}}
+        </div>
+    </div>
+    <div flex>
+        <schedule-table schedule="teacher.schedule.schedule"></schedule-table>
+    </div>
+</div>

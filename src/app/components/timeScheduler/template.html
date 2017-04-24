@@ -1,0 +1,13 @@
+<h2 class="md-headline schedule-header">Ustal plan dla {{teacher.displayName}}</h2>
+
+<md-autocomplete md-items="teacher in queryTeachers(searchText)" md-selected-item="selectedTeacher" md-search-text="searchText"
+    md-item-text="teacher.displayName" md-min-length="0" md-selected-item-change="editTeacherSchedule(teacher)" placeholder="Wybierz nauczyciela">
+    <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{teacher.displayName}} - {{teacher.schedule.notScheduled.length}} nieprzydzielonych</span>
+    </md-item-template>
+    <md-not-found>
+        Nie znaleziono nic dla "{{searchText}}"
+    </md-not-found>
+</md-autocomplete>
+
+<schedule-editor ng-model="teacher" ng-if="teacher"></schedule-editor>
