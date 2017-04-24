@@ -23,4 +23,8 @@ export default function ($scope) {
     $scope.getItemHeight = (duration) => `${duration * unitHeight}px`;
 
     $scope.fullHeight = `${tenHours * unitHeight}px`;
+
+    $scope.chooseSuggestion = (suggestion) => {
+        $scope.$emit('suggestionChosen', suggestion);
+    }
 }

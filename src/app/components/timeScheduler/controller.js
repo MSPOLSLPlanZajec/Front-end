@@ -23,7 +23,9 @@ export default async function ($scope, $state, $stateParams, Teacher, Schedule) 
 
         $scope.id = id;
         $scope.teacher = teachers.filter((x) => x.id === $scope.id)[0];
-console.log($scope.teacher)
+
+        $scope.$broadcast('teacherChanged');
+
         $state.go('timeScheduler.edit', { id });
     }
 }

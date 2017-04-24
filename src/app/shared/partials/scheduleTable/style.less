@@ -298,3 +298,23 @@ Main Components
     margin-bottom: 3px;
   }
 }
+
+.suggestion {
+  position: absolute;
+  z-index: 3;
+  /* top position and height will be set using js */
+  // width: calc(100% + 2px);
+  // left: -1px;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+  /* reset style */
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  height: auto;
+  max-width: none;
+  margin-right: 0;
+  border: 2px solid #ff2424;
+  color: #ff2424;
+  font-weight: 400;
+  cursor: pointer;
+}

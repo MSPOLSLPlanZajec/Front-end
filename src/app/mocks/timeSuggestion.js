@@ -2,11 +2,17 @@ module.exports = {
     get: [
         [
             {
-                startsAt: 6,
+                startsAt: 12,
+                duration: 6
+            }
+        ],
+        [
+            {
+                startsAt: 0,
                 duration: 6
             },
             {
-                startsAt: 10,
+                startsAt: 9,
                 duration: 6
             }
         ]

@@ -1,0 +1,21 @@
+<div class="scheduler-dialog">
+    <h3>Przydziel zajęcia</h3>
+
+    <div class="section">
+        Nauczyciel: <strong>{{teacher.displayName}}</strong>
+    </div>
+
+    <div class="section">
+        Przedmiot: <strong>{{course.name}}</strong>
+    </div>
+
+    <div class="section">
+        Wybierz salę:
+
+        <md-select placeholder="Sala" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
+            <md-option ng-value="room" ng-repeat="room in [308, 309, 406, 412]">{{room}}</md-option>
+        </md-select>
+    </div>
+
+    <md-button class="md-raised">Potwierdź</md-button>
+</div>

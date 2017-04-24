@@ -5,6 +5,6 @@ export default async function ($scope, $stateParams, Schedule) {
     var { id, type } = $scope;
 
     $scope.schedule = await Schedule.get({ id, type }).$promise;
-    console.log($scope.schedule);
+
     $scope.$apply();
 }

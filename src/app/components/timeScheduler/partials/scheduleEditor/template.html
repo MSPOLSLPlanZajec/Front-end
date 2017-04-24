@@ -1,11 +1,11 @@
 <div layout="row" style="padding-top: 15px;">
-    <div flex="20">
+    <div flex="20" style="background: #e1e1e1; padding: 15px; margin-right: 15px;">
         <h4 style="margin-top: 0;">Przydziel zajęcia</h4>
         <div ng-repeat="course in teacher.schedule.notScheduled">
-            {{course.name}} - {{course.type}}
+            <a href="#" ng-click="showSuggestions(course)">{{course.name}} - {{course.type}}</a>
         </div>
     </div>
     <div flex>
-        <schedule-table schedule="teacher.schedule.schedule"></schedule-table>
+        <schedule-table schedule="teacher.schedule.schedule" suggestions="suggestions"></schedule-table>
     </div>
 </div>
