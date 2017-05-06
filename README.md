@@ -11,4 +11,4 @@
     npm start
 
 ## run docker
-    docker build -t schedule . && docker run -p 8080:8080 --name schedule schedule
+    docker build -t schedule . && docker run -p 3000:8080 --name schedule schedule
