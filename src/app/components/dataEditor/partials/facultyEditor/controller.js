@@ -1,10 +1,13 @@
-export default async function ($scope, Faculty, FormUtils) {
-    $scope.$watch('data', value => init());
+export default async function ($scope, Faculty, FormUtils, DataEditorSharedData) {
+    init();
 
-    function init() {
-        $scope.faculties = $scope.data.faculties;
-        $scope.selectedFaculty = $scope.faculties[0];
-        $scope.newFaculty = { id: null };
+    function init(){
+        $scope.data = DataEditorSharedData.getData();
+        if($scope.data){
+            $scope.faculties = $scope.data.faculties;
+            $scope.selectedFaculty = $scope.faculties[0];
+            $scope.newFaculty = { id: null };
+        }
     }
 
 

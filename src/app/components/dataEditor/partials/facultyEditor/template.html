@@ -5,7 +5,7 @@
   <md-card-content>
     <form name="editFacultyForm" ng-submit="editFaculty()" novalidate>
     <div layout-gt-sm="row" layout-padding>
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Kierunek</label>
         <md-select ng-model="selectedFaculty">
           <md-option ng-value="faculty" ng-repeat="faculty in faculties | orderBy: 'name'">
@@ -14,7 +14,7 @@
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Nazwa</label>
         <input ng-model="selectedFaculty.name" type="text" required ng-minlength="2" ng-maxlength="45">
       </md-input-container>
@@ -35,7 +35,7 @@
     <form name="addFacultyForm" ng-submit="addFaculty()" novalidate>
       <div layout-gt-sm="row" layout-padding>
 
-        <md-input-container class="md-block" flex-gt-sm>
+        <md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Nazwa</label>
           <input ng-model="newFaculty.name" type="text" required ng-minlength="2" ng-maxlength="45">
         </md-input-container>

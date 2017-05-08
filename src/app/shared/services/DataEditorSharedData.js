@@ -1,19 +1,23 @@
-export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher, DataEditorSharedData) {
-    loadData();
+export default function (Classroom, Degree, Department, Faculty, Teacher) {
+    var data = null;
 
-    async function loadData() {
-        DataEditorSharedData.downloadData();
+    var downloadData = async function(){
         try {
-            $scope.data = {
+            data = {
                 classrooms: await Classroom.get().$promise,
                 degrees: await Degree.get().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,
                 teachers: await Teacher.get().$promise
             }
-            $scope.$apply();
         } catch (e) {
-            console.log("Can't obtain data")
+            data = null;
         }
     }
+
+    var getData = function() {
+        return data;
+    }
+
+    return { downloadData, getData };
 }

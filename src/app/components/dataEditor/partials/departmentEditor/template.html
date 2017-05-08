@@ -5,7 +5,7 @@
   <md-card-content>
     <form name="editDepartmentForm" ng-submit="editDepartment()" novalidate>
     <div layout-gt-sm="row" layout-padding>
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Wydział</label>
         <md-select ng-model="selectedDepartment">
           <md-option ng-value="department" ng-repeat="department in departments | orderBy: 'name'">
@@ -14,7 +14,7 @@
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block" flex-gt-sm>
+      <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Nazwa</label>
         <input ng-model="selectedDepartment.name" type="text" required ng-minlength="2" ng-maxlength="45">
       </md-input-container>

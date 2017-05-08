@@ -1,11 +1,14 @@
-export default async function ($scope, Degree, Teacher, FormUtils) {
-    $scope.$watch('data', value => init());
+export default async function ($scope, Degree, Teacher, FormUtils, DataEditorSharedData) {
+    init()
 
-    function init() {
-        $scope.teachers = $scope.data.teachers;
-        $scope.degrees = $scope.data.degrees;
-        $scope.selectedTeacher = $scope.teachers[0];
-        $scope.newTeacher = {};
+    function init(){
+        $scope.data = DataEditorSharedData.getData();
+        if($scope.data){
+            $scope.teachers = $scope.data.teachers;
+            $scope.degrees = $scope.data.degrees;
+            $scope.selectedTeacher = $scope.teachers[0];
+            $scope.newTeacher = {};
+        }
     }
 
     $scope.addTeacher = async function () {
