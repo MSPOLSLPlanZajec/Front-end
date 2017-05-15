@@ -9,12 +9,12 @@ rm master.zip
 
 cd Front-end-master
 
-echo "Building docker container..."
-docker build -t schedule .
-
 echo "Removing previous container"
 docker stop schedule
 docker rm schedule
+
+echo "Building docker container..."
+docker build --rm --no-cache=true -t schedule .
 
 echo "Removing sources..."
 cd ..
