@@ -8,7 +8,7 @@
         <md-button ng-click="showSchedules()" class="main-nav-button" class="main-nav-button" ng-class="{ 'active' : state.name === 'schedule' }">
             Przeglądaj plany
         </md-button>
-        <group-navigation ng-if="shouldShowSchedules || state.name === 'schedule'"></group-navigation>
+        <group-navigation ng-show="shouldShowSchedules || state.name === 'schedule'"></group-navigation>
 
         <md-button ui-sref="dataEditor" class="main-nav-button" ng-class="{ 'active' : state.name === 'dataEditor' }">
             Edytuj dane
