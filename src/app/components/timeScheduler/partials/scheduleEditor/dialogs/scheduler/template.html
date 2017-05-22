@@ -12,8 +12,8 @@
     <div class="section">
         Wybierz salę:
 
-        <md-select placeholder="Sala" ng-model="user" md-on-open="loadUsers()" style="min-width: 200px;">
-            <md-option ng-value="room" ng-repeat="room in [308, 309, 406, 412]">{{room}}</md-option>
+        <md-select placeholder="Sala" ng-model="room" md-on-open="loadUsers()" style="min-width: 200px;">
+            <md-option ng-value="room" ng-repeat="room in suggestion.rooms">{{room}}</md-option>
         </md-select>
     </div>
 

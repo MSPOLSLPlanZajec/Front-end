@@ -12,11 +12,7 @@ export default function ($scope, $mdDialog, $rootScope, TimeSuggestion) {
     $scope.$on('teacherChanged', () => $scope.suggestions = []);
 
     $scope.$on('suggestionChosen', (e, suggestion) => {
-        // var scope = $rootScope.$new();
-        // scope.suggestion = $scope.suggestion;
-        // scope.teacher = $scope.teacher;
-        // scope.course = $scope.course;
-
+        $scope.suggestion = suggestion;
         $mdDialog.show(angular.extend(schedulerDialog, { scope : $scope }));
     });
 }

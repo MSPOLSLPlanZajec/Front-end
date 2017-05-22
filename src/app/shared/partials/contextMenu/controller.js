@@ -1,7 +1,5 @@
 export default function ($rootScope, $scope, $state) {
     var { isAuthenticated } = $rootScope;
-
-    $scope.title = isAuthenticated() ? 'Menu' : 'Schedules';
     
     $scope.shouldShowSchedules = false;
     $scope.toggleSchedulesVisibility = () => $scope.shouldShowSchedules = !$scope.shouldShowSchedules;

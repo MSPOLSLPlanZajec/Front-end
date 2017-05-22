@@ -16,14 +16,14 @@
 						<div class="event-inner">
 							<div class="event-name">{{lesson.name}}</div>
 							<div class="event-meta">
-								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{lesson.teacher.name}}</a>
+								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{lesson.teacher.displayName}}</a>
 								<div>{{lesson.type}} / {{lesson.classroom.name}}</div>
 							</div>
 						</div>
 					</li>
 
 					<li class="suggestion" ng-repeat="suggestion in suggestions[$index]" ng-style="{'top' : getItemPosition(suggestion.startsAt), 'height' : getItemHeight(suggestion.duration)}"
-						ng-class="lesson.type" layout="column" layout-align="center center" ng-click="chooseSuggestion(suggestion)">
+						ng-class="lesson.type" layout="column" layout-align="center center" ng-click="chooseSuggestion(suggestion, $index)">
 						Wybierz
 					</li>
 				</ul>

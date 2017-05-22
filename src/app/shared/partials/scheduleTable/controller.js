@@ -24,7 +24,7 @@ export default function ($scope) {
 
     $scope.fullHeight = `${tenHours * unitHeight}px`;
 
-    $scope.chooseSuggestion = (suggestion) => {
-        $scope.$emit('suggestionChosen', suggestion);
+    $scope.chooseSuggestion = (suggestion, day) => {
+        $scope.$emit('suggestionChosen', angular.extend(suggestion, { day }));
     }
 }

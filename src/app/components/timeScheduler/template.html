@@ -1,12 +1,12 @@
-<h2 class="md-headline schedule-header">Ustal plan dla {{teacher.displayName}}</h2>
+<h2 class="md-headline schedule-header">Create schedule for {{teacher.displayName}}</h2>
 
 <md-autocomplete md-items="teacher in queryTeachers(searchText)" md-selected-item="selectedTeacher" md-search-text="searchText"
-    md-item-text="teacher.displayName" md-min-length="0" md-selected-item-change="editTeacherSchedule(teacher)" placeholder="Wybierz nauczyciela">
+    md-item-text="teacher.displayName" md-min-length="0" md-selected-item-change="editTeacherSchedule(teacher)" placeholder="Choose a teacher">
     <md-item-template>
-        <span md-highlight-text="searchText" md-highlight-flags="^i">{{teacher.displayName}} - {{teacher.schedule.notScheduled.length}} nieprzydzielonych</span>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{teacher.displayName}} - {{teacher.schedule.notScheduled.length}} not scheduled</span>
     </md-item-template>
     <md-not-found>
-        Nie znaleziono nic dla "{{searchText}}"
+        Nothing found for "{{searchText}}"
     </md-not-found>
 </md-autocomplete>
 

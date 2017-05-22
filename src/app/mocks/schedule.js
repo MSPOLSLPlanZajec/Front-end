@@ -149,6 +149,7 @@ var scheduleForTeacher = {
     ],
     notScheduled: [
         {
+            id: '4246c73b-db6f',
             name: 'Programowanie 1',
             teacher: teachers[0].name,
             type: 'lecture',
