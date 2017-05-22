@@ -6,7 +6,7 @@ export default async function ($scope, Classroom, Degree, Department, Faculty, T
         try {
             $scope.data = {
                 classrooms: await Classroom.get().$promise,
-                degrees: await Degree.get().$promise,
+                degrees: await Degree.query().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,
                 teachers: await Teacher.get().$promise

@@ -5,7 +5,7 @@ export default function (Classroom, Degree, Department, Faculty, Teacher) {
         try {
             data = {
                 classrooms: await Classroom.get().$promise,
-                degrees: await Degree.get().$promise,
+                degrees: await Degree.query().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,
                 teachers: await Teacher.get().$promise
