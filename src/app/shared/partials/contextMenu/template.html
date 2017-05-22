@@ -1,26 +1,32 @@
 <md-sidenav class="main-navigation md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
 
     <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Menu</h1>
+        <h1 class="md-toolbar-tools">{{title}}</h1>
     </md-toolbar>
 
-    <md-content layout-padding>
-        <md-button ng-click="showSchedules()" class="main-nav-button" class="main-nav-button" ng-class="{ 'active' : state.name === 'schedule' }">
-            Przeglądaj plany
+    <md-content layout-padding ng-if="isAuthenticated()">
+        <md-button ng-click="toggleSchedulesVisibility()" class="main-nav-button" class="main-nav-button" ng-class="{ 'active' : state.name === 'schedule' }">
+            Browse schedules
         </md-button>
         <group-navigation ng-show="shouldShowSchedules || state.name === 'schedule'"></group-navigation>
 
         <md-button ui-sref="dataEditor" class="main-nav-button" ng-class="{ 'active' : state.name === 'dataEditor' }">
-            Edytuj dane
+            Edit data
         </md-button>
 
         <md-button ui-sref="timeScheduler" class="main-nav-button" class="main-nav-button" ng-class="{ 'active' : state.name.indexOf('timeScheduler') !== -1 }">
-            Ustal plan
+            Create schedule
         </md-button>
 
-        <md-button class="main-nav-button" class="main-nav-button">
-            Wyloguj
+        <md-button class="main-nav-button" class="main-nav-button" ng-click="logout()">
+            Logout
         </md-button>
+    </md-content>
 
+    <md-content layout-padding ng-if="!isAuthenticated()">
+        <group-navigation></group-navigation>
+        <md-button class="main-nav-button" class="main-nav-button" ng-click="login()">
+            Login
+        </md-button>
     </md-content>
 </md-sidenav>
