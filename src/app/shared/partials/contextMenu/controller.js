@@ -4,10 +4,6 @@ export default function ($rootScope, $scope, $state) {
     $scope.shouldShowSchedules = false;
     $scope.toggleSchedulesVisibility = () => $scope.shouldShowSchedules = !$scope.shouldShowSchedules;
 
-    $scope.login = () => {
-        $rootScope.isAuthenticated = () => true;
-    }
-
     $scope.logout = () => {
         $rootScope.isAuthenticated = () => false;
         $state.go('home');

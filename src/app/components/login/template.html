@@ -1,0 +1,26 @@
+<md-content layout="row" layout-align="space-around" layout-padding="layout-padding">
+    <md-card flex="flex" flex-gt-sm="70" flex-gt-md="50">
+        <md-card-title layout-align="center none">
+            <span class="md-headline">Login</span>
+        </md-card-title>
+        <md-card-content>
+            <form name="form" ng-submit="authorize()" role="form">
+                <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+                    <md-input-container class="md-block short-input-container" flex-gt-sm>
+                        <label>Username</label>
+                        <input type="text" name="username" id="username" class="form-control" ng-model="username" required/>
+                        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username not specified</span>
+                    </md-input-container>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+                    <md-input-container class="md-block short-input-container" flex-gt-sm>
+                        <label>Hasło</label>
+                        <input type="password" name="password" id="password" class="form-control" ng-model="password" required/>
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password not specified</span>
+                    </md-input-container>
+                </div>
+                <md-button type="submit" ng-disabled="form.$invalid || dataLoading" class="md-primary md-raised">Login</md-button>
+            </form>
+        </md-card-content>
+    </md-card>
+</md-content>
