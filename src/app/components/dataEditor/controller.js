@@ -1,5 +1,7 @@
 export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher, DataEditorSharedData) {
     loadData();
+    $scope.loadData = loadData;
+    window.logme = $scope.data;
 
     async function loadData() {
         DataEditorSharedData.downloadData();
@@ -12,6 +14,7 @@ export default async function ($scope, Classroom, Degree, Department, Faculty, T
                 teachers: await Teacher.query().$promise
             }
             $scope.$apply();
+                console.log("new Data");
         } catch (e) {
             console.log("Can't obtain data")
         }

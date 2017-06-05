@@ -3,7 +3,6 @@ export default async function ($scope, Degree, Teacher, FormUtils, DataEditorSha
 
     function init(){
         $scope.data = DataEditorSharedData.getData();
-        window.logme = $scope.data;
         if($scope.data){
             $scope.teachers = $scope.data.teachers;
             $scope.degrees = $scope.data.degrees;
