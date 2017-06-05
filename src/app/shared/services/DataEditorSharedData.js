@@ -8,7 +8,7 @@ export default function (Classroom, Degree, Department, Faculty, Teacher) {
                 degrees: await Degree.query().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,
-                teachers: await Teacher.get().$promise
+                teachers: await Teacher.query().$promise
             }
         } catch (e) {
             data = null;

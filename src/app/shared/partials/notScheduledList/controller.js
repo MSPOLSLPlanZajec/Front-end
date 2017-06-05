@@ -1,7 +1,7 @@
 import lessonsListDialog from './dialogs/lessonsList';
 
 export default async function ($scope, $rootScope, Teacher, $mdDialog) {
-    $scope.teachers = await Teacher.get().$promise;
+    $scope.teachers = await Teacher.query().$promise;
 
     $scope.openDialog = (teacher) => {
         var scope = $rootScope.$new();

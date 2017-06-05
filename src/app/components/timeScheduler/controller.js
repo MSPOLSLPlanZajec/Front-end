@@ -2,13 +2,16 @@ export default async function ($scope, $state, $stateParams, Teacher, Schedule) 
     $scope.teachers = [];
     $scope.id = $stateParams.id;
     
-    var teachers = await Teacher.get().$promise;
+    var teachers = await Teacher.query().$promise;
 
     teachers.map(async (teacher) => {
         var { id } = teacher;
         teacher['schedule'] = await Schedule.get({ id, type: 'teacher' }).$promise;
-        $scope.teachers.push(teacher);
+        
+        var { title, name, surname } = teacher;
+        teacher['displayName'] = `${title} ${name} ${surname}`;
 
+        $scope.teachers.push(teacher);
         $scope.$apply();
     });
 
