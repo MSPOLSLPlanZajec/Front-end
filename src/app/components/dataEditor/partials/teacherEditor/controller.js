@@ -3,6 +3,7 @@ export default async function ($scope, Degree, Teacher, FormUtils, DataEditorSha
 
     function init(){
         $scope.data = DataEditorSharedData.getData();
+        window.logme = $scope.data;
         if($scope.data){
             $scope.teachers = $scope.data.teachers;
             $scope.degrees = $scope.data.degrees;
@@ -14,24 +15,29 @@ export default async function ($scope, Degree, Teacher, FormUtils, DataEditorSha
     $scope.addTeacher = async function () {
         try {
             var teacher = await Teacher.post($scope.newTeacher).$promise;
-            FormUtils.showSuccessToast('Nauczyciel dodany', '#addTeacherCard');
+            FormUtils.showSuccessToast('Teacher added', '#addTeacherCard');
             updateTeacherEditor(teacher);
         } catch (e) {
-            FormUtils.showFailureToast('Operacja nie powiodła się', '#addTeacherCard');
+            FormUtils.showFailureToast("Teacher couldn't be added", '#addTeacherCard');
         }
     }
 
     $scope.editTeacher = async function () {
         try {
             await Teacher.post($scope.selectedTeacher).$promise;
-            FormUtils.showSuccessToast('Zmiany zostały zapisane', '#editTeacherCard');
+            FormUtils.showSuccessToast('Teacher edited', '#editTeacherCard');
         } catch (e) {
-            FormUtils.showFailureToast('Nie udało się zapisać zmian', '#editTeacherCard');
+            FormUtils.showFailureToast("Changes couldn't be saved", '#editTeacherCard');
         }
     }
 
     function updateTeacherEditor(newTeacher) {
-        $scope.teachers.push(newTeacher);
+        $scope.teachers.push({ 
+            name: newTeacher.name,
+            surname: newTeacher.surname,
+            title: newTeacher.title, 
+            id : newTeacher.id}
+        );
         FormUtils.clearForm($scope.addTeacherForm)
         $scope.newTeacher = { id: null };
     }

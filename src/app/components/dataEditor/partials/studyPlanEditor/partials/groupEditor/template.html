@@ -1,15 +1,15 @@
 <md-card>
   <md-card-title>
-    <span class="md-headline">Przedmioty</span>
+    <span class="md-headline">Subjects</span>
   </md-card-title>
   <md-card-content>
     <subject-editor ng-repeat="subject in model.subjects" ng-model="subject" layout-gt-sm="row" layout-padding></subject-editor>
-    <md-button type="button" ng-click="addSubject()" class="add-element-button md-primary md-raised">Dodaj przedmiot</md-button>
+    <md-button type="button" ng-click="addSubject()" class="add-element-button md-primary md-raised">Add subject</md-button>
 </md-card>
 
 <md-card id="group-adder-{{::$id}}" ng-if="model.depth < 2">
    <md-card-title>
-      <span class="md-headline">Grupy</span>
+      <span class="md-headline">Groups</span>
    </md-card-title>
    <md-card-content>
    <md-tabs class="group-wrapper" ng-if="model.subgroups.length > 0" md-dynamic-height md-border-bottom>
@@ -24,10 +24,10 @@
    </br>
    <div layout-gt-sm="row" >
       <div>
-         <md-button type="button" ng-click="addGroup(newGroupName)" class="add-element-button md-block md-primary md-raised">Dodaj grupę</md-button>
+         <md-button type="button" ng-click="addGroup(newGroupName)" class="add-element-button md-block md-primary md-raised">Add group</md-button>
       </div>
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-         <label>Nazwa grupy</label>
+         <label>Group name</label>
          <input ng-model="newGroupName" type="text" ng-minlength="1" ng-maxlength="45">
       </md-input-container>
    </div>

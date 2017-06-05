@@ -2,9 +2,9 @@ export default async function ($scope, DataEditorSharedData) {
     $scope.$watch('subject', value => init())
 
     $scope.subjTypes = [
-        { value: 'lecture', showAs: "Wykład" },
-        { value: 'laboratories', showAs: "Laboratoria" },
-        { value: 'exercise', showAs: "ćwiczenia" }
+        { value: 'lecture', showAs: "lecture" },
+        { value: 'laboratories', showAs: "lab" },
+        { value: 'exercise', showAs: "exercise" }
     ];
     
     $scope.subjDurations = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

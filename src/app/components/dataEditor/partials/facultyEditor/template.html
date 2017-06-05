@@ -1,12 +1,12 @@
 <md-card id="editFacultyCard">
   <md-card-title>
-    <span class="md-headline">Edytuj istniejący kierunek</span>
+    <span class="md-headline">Edit existing faculty</span>
   </md-card-title>
   <md-card-content>
     <form name="editFacultyForm" ng-submit="editFaculty()" novalidate>
     <div layout-gt-sm="row" layout-padding>
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-        <label>Kierunek</label>
+        <label>Faculty</label>
         <md-select ng-model="selectedFaculty">
           <md-option ng-value="faculty" ng-repeat="faculty in faculties | orderBy: 'name'">
             {{faculty.name}}
@@ -15,12 +15,12 @@
       </md-input-container>
 
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-        <label>Nazwa</label>
+        <label>Name</label>
         <input ng-model="selectedFaculty.name" type="text" required ng-minlength="2" ng-maxlength="45">
       </md-input-container>
 
       <span>
-            <md-button type="submit" ng-disabled="editFacultyForm.$invalid" class="md-primary md-raised">Zapisz</md-button>
+            <md-button type="submit" ng-disabled="editFacultyForm.$invalid" class="md-primary md-raised">Save</md-button>
         </span>
     </div>
     </form>
@@ -29,19 +29,19 @@
 
 <md-card id="addFacultyCard">
   <md-card-title>
-    <span class="md-headline">Dodaj nowy kierunek</span>
+    <span class="md-headline">Add new faculty</span>
   </md-card-title>
   <md-card-content>
     <form name="addFacultyForm" ng-submit="addFaculty()" novalidate>
       <div layout-gt-sm="row" layout-padding>
 
         <md-input-container class="md-block short-input-container" flex-gt-sm>
-          <label>Nazwa</label>
+          <label>Name</label>
           <input ng-model="newFaculty.name" type="text" required ng-minlength="2" ng-maxlength="45">
         </md-input-container>
 
         <span>
-            <md-button type="submit" ng-disabled="addFacultyForm.$invalid" class="md-primary md-raised">Dodaj</md-button>
+            <md-button type="submit" ng-disabled="addFacultyForm.$invalid" class="md-primary md-raised">Add</md-button>
         </span>
       </div>
     </form>

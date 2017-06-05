@@ -1,12 +1,12 @@
 <md-card id="editDepartmentCard">
   <md-card-title>
-    <span class="md-headline">Edytuj istniejący wydział</span>
+    <span class="md-headline">Edit existing department</span>
   </md-card-title>
   <md-card-content>
     <form name="editDepartmentForm" ng-submit="editDepartment()" novalidate>
     <div layout-gt-sm="row" layout-padding>
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-        <label>Wydział</label>
+        <label>Department</label>
         <md-select ng-model="selectedDepartment">
           <md-option ng-value="department" ng-repeat="department in departments | orderBy: 'name'">
             {{department.name}}
@@ -15,12 +15,12 @@
       </md-input-container>
 
       <md-input-container class="md-block short-input-container" flex-gt-sm>
-        <label>Nazwa</label>
+        <label>Name</label>
         <input ng-model="selectedDepartment.name" type="text" required ng-minlength="2" ng-maxlength="45">
       </md-input-container>
 
       <span>
-            <md-button type="submit" ng-disabled="editDepartmentForm.$invalid" class="md-primary md-raised">Zapisz</md-button>
+            <md-button type="submit" ng-disabled="editDepartmentForm.$invalid" class="md-primary md-raised">Save</md-button>
         </span>
     </div>
     </form>
@@ -29,19 +29,19 @@
 
 <md-card id="addDepartmentCard">
   <md-card-title>
-    <span class="md-headline">Dodaj nowy wydział</span>
+    <span class="md-headline">Add new department</span>
   </md-card-title>
   <md-card-content>
     <form name="addDepartmentForm" ng-submit="addDepartment()" novalidate>
       <div layout-gt-sm="row" layout-padding>
 
         <md-input-container class="md-block" flex-gt-sm>
-          <label>Nazwa</label>
+          <label>Name</label>
           <input ng-model="newDepartment.name" type="text" required ng-minlength="2" ng-maxlength="45">
         </md-input-container>
 
         <span>
-            <md-button type="submit" ng-disabled="addDepartmentForm.$invalid" class="md-primary md-raised">Dodaj</md-button>
+            <md-button type="submit" ng-disabled="addDepartmentForm.$invalid" class="md-primary md-raised">Add</md-button>
         </span>
       </div>
     </form>

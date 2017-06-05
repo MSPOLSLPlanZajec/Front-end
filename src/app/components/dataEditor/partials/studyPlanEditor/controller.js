@@ -8,7 +8,7 @@ export default async function ($scope, StudyPlan, FormUtils) {
     $scope.addSemester = function () {
         var semCount = $scope.studyPlan.semesters.length;
         var semester = {
-            name: `SEMESTR ${semCount + 1}`,
+            name: `SEMESTER ${semCount + 1}`,
             subjects: [],
             subgroups: [],
             depth: 0
@@ -19,9 +19,9 @@ export default async function ($scope, StudyPlan, FormUtils) {
     $scope.submitStudyPlan = async function () {
         try {
             await StudyPlan.post($scope.selectedDepartment).$promise;
-            FormUtils.showSuccessToast('Plan został zapisany', '#addNewStudyPlan');
+            FormUtils.showSuccessToast('Plan added', '#addNewStudyPlan');
         } catch (e) {
-            FormUtils.showFailureToast('Nie udało się zapisać planu', '#addNewStudyPlan');
+            FormUtils.showFailureToast("Plan couldn't be added", '#addNewStudyPlan');
         }
 
         $scope.studyPlan = {

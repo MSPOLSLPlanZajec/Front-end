@@ -14,19 +14,19 @@ export default async function ($scope, Faculty, FormUtils, DataEditorSharedData)
     $scope.addFaculty = async function () {
         try {
             var faculty = await Faculty.post($scope.newFaculty).$promise;
-            FormUtils.showSuccessToast('Kierunek dodany', '#addFacultyCard');
+            FormUtils.showSuccessToast('Faculty added', '#addFacultyCard');
             updateFacultyEditor(faculty);
         } catch (e) {
-            FormUtils.showFailureToast('Nie udało się zapisać zmian', '#editFacultyCard');
+            FormUtils.showFailureToast('Failed to add faculty', '#editFacultyCard');
         }
     }
 
     $scope.editFaculty = async function () {
         try {
             await Faculty.post($scope.selectedFaculty).$promise;
-            FormUtils.showSuccessToast('Zmiany zostały zapisane', '#editFacultyCard');
+            FormUtils.showSuccessToast('Faculty edited', '#editFacultyCard');
         } catch (e) {
-            FormUtils.showFailureToast('Nie udało się zapisać zmian', '#editFacultyCard');
+            FormUtils.showFailureToast("Changes couldn't be saved", '#editFacultyCard');
         }
     }
 

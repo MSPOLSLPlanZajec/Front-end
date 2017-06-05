@@ -1,17 +1,17 @@
 <md-input-container class="md-block short-input-container" flex-gt-sm>
-    <label>Nazwa</label>
+    <label>Name</label>
     <input ng-model="subject.name" type="text" required ng-minlength="3" ng-maxlength="45" required>
 </md-input-container>
 <md-input-container class="md-block short-input-container" flex-gt-sm>
-    <label>Nauczyciel</label>
+    <label>Teacher</label>
     <md-select ng-model="subject.teacher">
         <md-option ng-value="teacher" ng-repeat="teacher in data.teachers | orderBy: ['name', 'surname']">
-            {{[teacher.titles, teacher.name, teacher.surname].join(' ')}}
+            {{[teacher.title, teacher.name, teacher.surname].join(' ')}}
         </md-option>
     </md-select>
 </md-input-container>
 <md-input-container class="md-block short-input-container" flex-gt-sm>
-    <label>Typ zajęć</label>
+    <label>Type</label>
     <md-select ng-model="subject.type">
         <md-option ng-value="type" ng-repeat="type in subjTypes">
             {{type.showAs}}
@@ -19,7 +19,7 @@
     </md-select>
 </md-input-container>
 <md-input-container class="md-block short-input-container" flex-gt-sm>
-    <label>Długość</label>
+    <label>Duration</label>
     <md-select ng-model="subject.duration" ng-init="subject.duration=subjDurations[6]">
         <md-option ng-value="duration" ng-repeat="duration in subjDurations">
             {{getDurationString(duration)}}

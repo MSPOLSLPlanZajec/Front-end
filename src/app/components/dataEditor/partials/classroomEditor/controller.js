@@ -15,19 +15,19 @@ export default async function ($scope, Classroom, Department, FormUtils, DataEdi
     $scope.addClassroom = async function () {
         try {
             var classroom = await Classroom.post($scope.newClassroom).$promise;
-            FormUtils.showSuccessToast('Sala dodana', '#addClassroomCard');
+            FormUtils.showSuccessToast('Classroom added', '#addClassroomCard');
             updateClassroomEditor(classroom);
         } catch (e) {
-            FormUtils.showFailureToast('Operacja nie powiodła się', '#addClassroomCard');
+            FormUtils.showFailureToast('Failed to add classroom', '#addClassroomCard');
         }
     }
 
     $scope.editClassroom = async function () {
         try {
             await Classroom.post($scope.selectedClassroom).$promise;
-            FormUtils.showSuccessToast('Zmiany zostały zapisane', '#editClassroomCard');
+            FormUtils.showSuccessToast('Classroom edited', '#editClassroomCard');
         } catch (e) {
-            FormUtils.showFailureToast('Nie udało się zapisać zmian', '#editClassroomCard');
+            FormUtils.showFailureToast("Changes couldn't be saved", '#editClassroomCard');
         }
     }
 

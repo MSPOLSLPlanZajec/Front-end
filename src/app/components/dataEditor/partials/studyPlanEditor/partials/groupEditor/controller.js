@@ -16,9 +16,9 @@ export default async function ($scope, FormUtils) {
 
     $scope.addGroup = function (groupName) {
         if (groupName.length < 1 || groupName.length > 45)
-            FormUtils.showFailureToast("Nazwa grupy musi mieć 1-45 znaków", `#group-adder-${$scope.$id}`);
+            FormUtils.showFailureToast("Group name should have 1-45 chars", `#group-adder-${$scope.$id}`);
         else if (!groupNameAvailable(groupName))
-            FormUtils.showFailureToast("Grupa o takiej nazwie juz istnieje", `#group-adder-${$scope.$id}`);
+            FormUtils.showFailureToast("Group with same name exists", `#group-adder-${$scope.$id}`);
         else {
             $scope.model.subgroups.push({
                 name: groupName,
