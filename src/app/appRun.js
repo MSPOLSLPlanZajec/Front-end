@@ -1,5 +1,5 @@
-export default function ($rootScope, $state) {
-    $rootScope.isAuthenticated = () => false;
+export default function ($rootScope, $state, $http, Auth) {
+    $rootScope.isAuthenticated = Auth.isAuthenticated;
 
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
         // not authenticated
@@ -9,4 +9,6 @@ export default function ($rootScope, $state) {
             event.preventDefault();
         }
     });
+
+    $http.defaults.headers.common['Authorization'] = `Bearer ${Auth.getToken()}`;
 }
