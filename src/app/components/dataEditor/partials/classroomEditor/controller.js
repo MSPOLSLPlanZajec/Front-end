@@ -1,4 +1,4 @@
-export default async function ($scope, Classroom, Department, FormUtils, DataEditorSharedData) {
+export default async function ($scope, Classroom, Command, Department, FormUtils, DataEditorSharedData) {
     init();
 
     function init(){
@@ -14,7 +14,13 @@ export default async function ($scope, Classroom, Department, FormUtils, DataEdi
 
     $scope.addClassroom = async function () {
         try {
-            var classroom = await Classroom.post($scope.newClassroom).$promise;
+            var command = {
+                type: 'add_classroom',
+                data: $scope.newClassroom
+            };
+
+            var classroom = await Command.save(command).$promise;
+
             FormUtils.showSuccessToast('Classroom added', '#addClassroomCard');
             updateClassroomEditor(classroom);
         } catch (e) {
@@ -24,7 +30,12 @@ export default async function ($scope, Classroom, Department, FormUtils, DataEdi
 
     $scope.editClassroom = async function () {
         try {
-            await Classroom.post($scope.selectedClassroom).$promise;
+            var command = {
+                type: 'add_classroom',
+                data: $scope.selectedClassroom
+            };
+
+            await Command.save(command).$promise;
             FormUtils.showSuccessToast('Classroom edited', '#editClassroomCard');
         } catch (e) {
             FormUtils.showFailureToast("Changes couldn't be saved", '#editClassroomCard');

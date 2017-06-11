@@ -8,24 +8,24 @@
       <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Classroom</label>
         <md-select ng-model="selectedClassroom">
-          <md-option ng-value="classroom" ng-repeat="classroom in classrooms | orderBy: ['department', 'number']">
-            {{[classroom.number, classroom.department].join(' | ')}}
+          <md-option ng-value="classroom" ng-repeat="classroom in classrooms | orderBy: name">
+            {{classroom.name}}
           </md-option>
         </md-select>
       </md-input-container>
 
-      <md-input-container class="md-block short-input-container" flex-gt-sm>
+      <!--<md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Department</label>
         <md-select ng-model="selectedClassroom.department">
           <md-option ng-value="department.name" ng-repeat="department in departments">
             {{department.name}}
           </md-option>
         </md-select>
-      </md-input-container>
+      </md-input-container>-->
 
       <md-input-container class="md-block short-input-container" flex-gt-sm>
         <label>Number</label>
-        <input ng-model="selectedClassroom.number" type="text" required ng-minlength="1" ng-maxlength="45">
+        <input ng-model="selectedClassroom.name" type="text" required ng-minlength="1" ng-maxlength="45">
       </md-input-container>
 
       <span>
@@ -43,18 +43,18 @@
   <md-card-content>
     <form name="addClassroomForm" ng-submit="addClassroom()" novalidate>
       <div layout-gt-sm="row" layout-padding>
-        <md-input-container class="md-block short-input-container" flex-gt-sm>
+        <!--<md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Department</label>
           <md-select ng-model="newClassroom.department" required>
             <md-option ng-value="department.name" ng-repeat="department in departments | orderBy : name">
               {{department.name}}
             </md-option>
           </md-select>
-        </md-input-container>
+        </md-input-container>-->
 
         <md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Number</label>
-          <input ng-model="newClassroom.number" type="text" required ng-minlength="1" ng-maxlength="45">
+          <input ng-model="newClassroom.name" type="text" required ng-minlength="1" ng-maxlength="45">
         </md-input-container>
 
         <span>

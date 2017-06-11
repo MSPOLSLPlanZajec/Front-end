@@ -7,7 +7,7 @@ export default async function ($scope, Classroom, Degree, Department, Faculty, T
         DataEditorSharedData.downloadData();
         try {
             $scope.data = {
-                classrooms: await Classroom.get().$promise,
+                classrooms: await Classroom.query().$promise,
                 degrees: await Degree.query().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,

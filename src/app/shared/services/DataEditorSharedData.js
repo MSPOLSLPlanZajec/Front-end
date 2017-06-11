@@ -4,7 +4,7 @@ export default function (Classroom, Degree, Department, Faculty, Teacher) {
     var downloadData = async function(){
         try {
             data = {
-                classrooms: await Classroom.get().$promise,
+                classrooms: await Classroom.query().$promise,
                 degrees: await Degree.query().$promise,
                 departments: await Department.get().$promise,
                 faculties: await Faculty.get().$promise,
