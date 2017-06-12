@@ -1,15 +1,19 @@
-export default function ($rootScope, $scope, $state) {
+export default function ($rootScope, $scope, $state, Auth) {
     var { isAuthenticated } = $rootScope;
     
     $scope.shouldShowSchedules = false;
     $scope.toggleSchedulesVisibility = () => $scope.shouldShowSchedules = !$scope.shouldShowSchedules;
 
     $scope.login = () => {
-        $rootScope.isAuthenticated = () => true;
+        var user = {
+            username: 'admin',
+            password: 'admin'
+        };
+        Auth.login(user);
     }
 
     $scope.logout = () => {
-        $rootScope.isAuthenticated = () => false;
+        Auth.logout();
         $state.go('home');
     }
 
