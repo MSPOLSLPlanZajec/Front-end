@@ -5,11 +5,7 @@ export default function ($rootScope, $scope, $state, Auth) {
     $scope.toggleSchedulesVisibility = () => $scope.shouldShowSchedules = !$scope.shouldShowSchedules;
 
     $scope.login = () => {
-        var user = {
-            username: 'admin',
-            password: 'admin'
-        };
-        Auth.login(user);
+        $state.go('login');
     }
 
     $scope.logout = () => {

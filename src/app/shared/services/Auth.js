@@ -1,4 +1,4 @@
-export default function (AuthToken, $rootScope, $http) {
+export default function (AuthToken, $http, $q) {
     var isAuthenticated = sessionStorage.authToken;
 
     var setAuthHeader = () => {
@@ -11,16 +11,24 @@ export default function (AuthToken, $rootScope, $http) {
         isAuthenticated: () => isAuthenticated,
         getToken: () => sessionStorage.authToken,
         login: ({ username, password }) => {
+            var deferred = $q.defer();
             AuthToken.post({ username, password })
                 .then((data) => {
                     var { access_token } = data;
+
+                    if (!access_token) {
+                        deferred.reject();
+                        return;
+                    }
+
                     sessionStorage.authToken = access_token;
                     isAuthenticated = true;
 
                     setAuthHeader();
-
-                    $rootScope.$apply();
+                    deferred.resolve();
                 });
+
+            return deferred.promise;
         },
         logout: () => {
             sessionStorage.authToken = '';
