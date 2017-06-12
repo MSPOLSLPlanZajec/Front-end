@@ -1,5 +1,8 @@
 <div class="group-navigation">
-    <div ng-repeat="major in groups">
+    <div class="no-groups" ng-show="!groups.length">
+        No groups to show!
+    </div>
+    <div ng-repeat="major in groups" ng-show="groups.length">
         <md-button ng-click="toggleGroup('major', $index)" class="group-button" layout="row" layout-align="start center">
             <span flex>{{major.name}}</span>
             <i ng-show="active.major !== $index">+</i>
