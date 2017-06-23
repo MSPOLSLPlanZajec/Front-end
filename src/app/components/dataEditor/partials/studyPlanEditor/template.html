@@ -6,11 +6,7 @@
         <form name="addStudyPlanForm" ng-submit="submitStudyPlan()" novalidate>
             <md-input-container class="md-block short-input-container" flex-gt-sm>
                 <label>Faculty</label>
-                <md-select ng-model="studyPlan.major" required>
-                    <md-option ng-value="faculty.name" ng-repeat="faculty in data.faculties">
-                        {{faculty.name}}
-                    </md-option>
-                </md-select>
+                <input ng-model="studyPlan.major" type="text" required ng-minlength="2" ng-maxlength="45" required>
             </md-input-container>
             <md-button type="button" ng-click="addSemester()" class="md-primary md-raised">Add semester</md-button>
             <!--<md-button type="button" ng-click="logStudyPlan()" class="md-primary md-raised">LOG</md-button>

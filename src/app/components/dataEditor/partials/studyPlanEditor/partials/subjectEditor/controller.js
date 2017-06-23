@@ -1,4 +1,4 @@
-export default async function ($scope, DataEditorSharedData) {
+export default async function ($scope) {
     $scope.$watch('subject', value => init())
 
     $scope.subjTypes = [
@@ -22,7 +22,7 @@ export default async function ($scope, DataEditorSharedData) {
     }
 
     function init() {
-        $scope.data = DataEditorSharedData.getData();
+        //TODO $scope.data = DataEditorSharedData.getData();
         $scope.subject.name = '';
         $scope.subject.teacher = $scope.data.teachers[0];
         $scope.subject.duration = 6;

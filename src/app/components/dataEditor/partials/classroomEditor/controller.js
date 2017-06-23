@@ -1,50 +1,57 @@
-export default async function ($scope, Classroom, Command, Department, FormUtils, DataEditorSharedData) {
+export default async function ($scope, Classroom, Command, FormUtils) {
     init();
 
-    function init(){
-        $scope.data = DataEditorSharedData.getData();
-        if($scope.data){
-            $scope.classrooms = $scope.data.classrooms;
-            $scope.departments = $scope.data.departments;
-            $scope.selectedClassroom = $scope.classrooms[0];
-            $scope.newClassroom = { id: null };
-        }
+    async function init() {
+        $scope.data = $scope.$parent.data;
+        $scope.classrooms = $scope.data.classrooms;
 
-    }
-
-    $scope.addClassroom = async function () {
-        try {
-            var command = {
-                type: 'add_classroom',
-                data: $scope.newClassroom
-            };
-
-            var classroom = await Command.save(command).$promise;
-
-            FormUtils.showSuccessToast('Classroom added', '#addClassroomCard');
-            updateClassroomEditor(classroom);
-        } catch (e) {
-            FormUtils.showFailureToast('Failed to add classroom', '#addClassroomCard');
-        }
+        $scope.selectedClassroom = $scope.classrooms[0];
+        $scope.newClassroom = {};
     }
 
     $scope.editClassroom = async function () {
-        try {
-            var command = {
-                type: 'add_classroom',
-                data: $scope.selectedClassroom
-            };
+        var response = await POST($scope.selectedClassroom);
+        showResponseInfo({ response: response, action: "edit" });
+        console.log(response)
+    }
 
-            await Command.save(command).$promise;
-            FormUtils.showSuccessToast('Classroom edited', '#editClassroomCard');
-        } catch (e) {
-            FormUtils.showFailureToast("Changes couldn't be saved", '#editClassroomCard');
+    $scope.addClassroom = async function () {
+        var response = await POST($scope.newClassroom);
+        showResponseInfo({ response: response, action: "add" });
+        console.log(response);
+        if (response) {
+            $scope.classrooms.push({
+                id: response.id,
+                name: response.name
+            });
+            resetClassroomAdder();
         }
     }
 
-    function updateClassroomEditor(newClassroom) {
-        $scope.classrooms.push(newClassroom);
+    async function POST(classroom){
+        try {
+            var command = {
+                type: 'add_classroom',
+                data: classroom
+            }
+
+            var response = await Command.save(command).$promise;
+            return response;
+        } catch (e){
+            console.log(e);
+        }
+    }
+
+    function resetClassroomAdder(){
         FormUtils.clearForm($scope.addClassroomForm)
-        $scope.newClassroom = { id: null };
+        $scope.newClassroom = {};
+    }
+
+    function showResponseInfo({ response, action }) {
+        FormUtils.showToast({
+            type: response ? "success" : "failure",
+            msg: `${action} operation ${response ? "succeed" : "failed"}`,
+            parentId: `#${action}ClassroomCard`
+        })
     }
 }

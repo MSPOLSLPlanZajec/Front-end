@@ -1,4 +1,4 @@
-export default async function ($scope, StudyPlan, FormUtils) {
+export default async function ($scope, StudyPlan, Command, FormUtils) {
 
     $scope.studyPlan = {
         major: '',
@@ -18,7 +18,15 @@ export default async function ($scope, StudyPlan, FormUtils) {
 
     $scope.submitStudyPlan = async function () {
         try {
-            await StudyPlan.post($scope.selectedDepartment).$promise;
+            var studyPlan = $scope.getStudyPlanReadyToSend($scope.studyPlan);
+
+            var command = {
+                type: 'add_study_plan',
+                data: studyPlan
+            };
+            console.log(studyPlan)
+            await Command.save(command).$promise;
+
             FormUtils.showSuccessToast('Plan added', '#addNewStudyPlan');
         } catch (e) {
             FormUtils.showFailureToast("Plan couldn't be added", '#addNewStudyPlan');

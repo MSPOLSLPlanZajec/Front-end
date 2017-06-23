@@ -1,6 +1,6 @@
 export default function ($mdToast) {
 
-    function showToast(type, msg, parentId, position){
+    function showToast({type, msg, parentId, position}){
         var pos = position || 'top-right';
 
         $mdToast.show($mdToast.simple()
@@ -12,18 +12,10 @@ export default function ($mdToast) {
         );        
     }
 
-    function showSuccessToast(msg, parentId, position){
-        showToast('success', msg, parentId, position)
-    }
-
-    function showFailureToast(msg, parentId, position){
-        showToast('failure', msg, parentId, position)
-    }
-
     function clearForm(form){
         form.$setPristine();
         form.$setUntouched();
     }
 
-    return { showSuccessToast, showFailureToast, clearForm }
+    return { showToast, clearForm }
 }

@@ -1,22 +1,26 @@
-export default async function ($scope, Classroom, Degree, Department, Faculty, Teacher, DataEditorSharedData) {
+export default async function ($scope, Classroom, Degree, Teacher) {
     loadData();
     $scope.loadData = loadData;
-    window.logme = $scope.data;
 
     async function loadData() {
-        DataEditorSharedData.downloadData();
         try {
             $scope.data = {
                 classrooms: await Classroom.query().$promise,
                 degrees: await Degree.query().$promise,
-                departments: await Department.get().$promise,
-                faculties: await Faculty.get().$promise,
                 teachers: await Teacher.query().$promise
             }
             $scope.$apply();
-                console.log("new Data");
+            console.log("Data obtained", $scope.data);
         } catch (e) {
-            console.log("Can't obtain data")
+            console.log("Can't obtain data", e, $scope.data)
+        }
+    }
+
+    $scope.updateTeachers = async function() {
+        try{
+            $scope.data.teachers = await Teacher.query().$promise;
+        } catch(e){
+            console.log("Can't obtain teachers", e);
         }
     }
 }
