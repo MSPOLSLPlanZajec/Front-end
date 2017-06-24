@@ -13,6 +13,7 @@
     "babel-regenerator-runtime": "^6.5.0",
     "bower": "^1.8.0",
     "css-loader": "^0.25.0",
+    "express": "^4.15.3",
     "html-loader": "^0.4.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
@@ -27,7 +28,7 @@
   "scripts": {
     "test": "echo \"No test specified\" && exit 0",
     "start": "./node_modules/.bin/webpack-dev-server --content-base src --inline --progress --colors --watch --config webpack_config/development.js --history-api-fallback true",
-    "start-dist": "./node_modules/.bin/webpack-dev-server --content-base src --inline --progress --colors --config webpack_config/development.js --history-api-fallback true --host 0.0.0.0 --public 157.158.16.186:3000",
+    "start-dist": "npm run dist && node server",
     "dist": "./node_modules/.bin/webpack --progress --colors --config webpack_config/production.js"
   },
   "author": "Tomasz Pierzchała",
