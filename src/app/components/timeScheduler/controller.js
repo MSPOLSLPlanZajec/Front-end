@@ -7,7 +7,11 @@ export default async function ($scope, $state, $stateParams, Teacher, Schedule) 
     teachers.map(async (teacher) => {
         var { id } = teacher;
         teacher['schedule'] = await Schedule.get({ id, type: 'teacher' }).$promise;
-        
+
+        if (!teacher.schedule.notScheduled || !teacher.schedule.notScheduled.length) {
+            return;
+        }
+
         var { title, name, surname } = teacher;
         teacher['displayName'] = `${title} ${name} ${surname}`;
 

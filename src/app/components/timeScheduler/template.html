@@ -6,7 +6,8 @@
         <span md-highlight-text="searchText" md-highlight-flags="^i">{{teacher.displayName}} - {{teacher.schedule.notScheduled.length}} not scheduled</span>
     </md-item-template>
     <md-not-found>
-        Nothing found for "{{searchText}}"
+        <span ng-if="searchText">Nothing found for "{{searchText}}"</span>
+        <span ng-if="!searchText">There is no teachers with not scheduled classes</span>
     </md-not-found>
 </md-autocomplete>
 
