@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var PORT = 3000;
+var PORT = 8080;
 
 // static - all our js, css, images, etc go into the assets path
 app.use('/', express.static(__dirname + '/dist', { dotfiles: 'allow' }));
