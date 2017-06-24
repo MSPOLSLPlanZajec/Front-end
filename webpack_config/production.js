@@ -14,7 +14,7 @@ var local = {
     plugins: [
         new GenerateIndex(),
         new InsertScripts({
-            entry: './src/index.html',
+            entry: './src/index-template.html',
             output: './dist/index.html',
             scripts: global.scripts,
             styles: global.styles
@@ -29,7 +29,7 @@ var local = {
           warnings: false
         }),
         new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(JSON.parse(`"${process.env.NODE_ENV}"` || '"production"'))
+            NODE_ENV: '"production"'
         })
     ]
 };

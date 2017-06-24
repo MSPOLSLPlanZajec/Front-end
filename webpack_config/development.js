@@ -24,7 +24,7 @@ var local = {
             filename: 'assets/scripts/commons.js'
         }),
         new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(JSON.parse(`"${process.env.NODE_ENV}"` || '"development"'))
+            NODE_ENV: '"development"'
         })
     ]
 };
