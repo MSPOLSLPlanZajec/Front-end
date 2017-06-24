@@ -1,13 +1,13 @@
 <div ng-cloak>
   <md-content>
     <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="Teachers" md-on-select="loadData()">
+      <md-tab label="Teachers">
         <teacher-editor ng-if='data'></teacher-editor>
       </md-tab>
-      <md-tab label="Classrooms" md-on-select="loadData()">
+      <md-tab label="Classrooms">
         <classroom-editor ng-if='data'></classroom-editor>
       </md-tab>
-      <md-tab label="Plans" md-on-select="loadData()">
+      <md-tab label="Plans">
         <study-plan-editor ng-if='data'></study-plan-editor>
       </md-tab>
     </md-tabs>

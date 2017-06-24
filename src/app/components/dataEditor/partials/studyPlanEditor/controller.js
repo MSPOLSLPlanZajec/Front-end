@@ -60,7 +60,7 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
                 name: subject.name,
                 teacher_id: subject.teacher.id,
                 duration: subject.duration,
-                type: subject.type.value
+                type: subject.type
             }
         }
 

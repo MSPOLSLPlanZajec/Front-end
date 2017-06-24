@@ -1,4 +1,4 @@
-export default async function ($scope, Classroom, Degree, Teacher) {
+export default async function ($scope, Classroom, Degree, Teacher, LessonType) {
     loadData();
     $scope.loadData = loadData;
 
@@ -7,20 +7,13 @@ export default async function ($scope, Classroom, Degree, Teacher) {
             $scope.data = {
                 classrooms: await Classroom.query().$promise,
                 degrees: await Degree.query().$promise,
-                teachers: await Teacher.query().$promise
+                teachers: await Teacher.query().$promise,
+                lessonTypes: await LessonType.query().$promise
             }
             $scope.$apply();
             console.log("Data obtained", $scope.data);
         } catch (e) {
             console.log("Can't obtain data", e, $scope.data)
-        }
-    }
-
-    $scope.updateTeachers = async function() {
-        try{
-            $scope.data.teachers = await Teacher.query().$promise;
-        } catch(e){
-            console.log("Can't obtain teachers", e);
         }
     }
 }
