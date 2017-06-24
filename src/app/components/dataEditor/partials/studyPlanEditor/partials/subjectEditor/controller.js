@@ -22,7 +22,10 @@ export default async function ($scope) {
     }
 
     function init() {
-        //TODO $scope.data = DataEditorSharedData.getData();
+        $scope.data = $scope.$parent.data;
+        $scope.teachers = $scope.data.teachers;
+        $scope.degrees = $scope.data.degrees;
+
         $scope.subject.name = '';
         $scope.subject.teacher = $scope.data.teachers[0];
         $scope.subject.duration = 6;

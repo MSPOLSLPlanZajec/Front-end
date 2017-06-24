@@ -1,8 +1,15 @@
 export default async function ($scope, StudyPlan, Command, FormUtils) {
+    init()
 
-    $scope.studyPlan = {
-        major: '',
-        semesters: []
+    async function init(){
+        $scope.data = $scope.$parent.data;
+        $scope.teachers = $scope.data.teachers;
+        $scope.degrees = $scope.data.degrees;
+
+        $scope.studyPlan = {
+            major: '',
+            semesters: []
+        }
     }
 
     $scope.addSemester = function () {
@@ -16,26 +23,35 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
         $scope.studyPlan.semesters.push(semester)
     }
 
-    $scope.submitStudyPlan = async function () {
-        try {
-            var studyPlan = $scope.getStudyPlanReadyToSend($scope.studyPlan);
+    $scope.submitStudyPlan = async function(){
+        var response = await POST($scope.studyPlan);
+        showResponseInfo(response);
+        console.log(response)
 
+        if(response)
+            resetStudyPlan();
+    }
+
+    async function POST(rawStudyPlan){
+        try{
             var command = {
                 type: 'add_study_plan',
-                data: studyPlan
-            };
-            console.log(studyPlan)
-            await Command.save(command).$promise;
+                data: $scope.getStudyPlanReadyToSend(rawStudyPlan)
+            }
 
-            FormUtils.showSuccessToast('Plan added', '#addNewStudyPlan');
-        } catch (e) {
-            FormUtils.showFailureToast("Plan couldn't be added", '#addNewStudyPlan');
+            var response = await Command.save(command).$promise;
+            return response;
+        } catch (e){
+            console.log(e);
         }
+    }
 
-        $scope.studyPlan = {
-            major: '',
-            semesters: []
-        }
+    function showResponseInfo(response) {
+        FormUtils.showToast({
+            type: response ? "success" : "failure",
+            msg: `operation ${response ? "succeed" : "failed"}`,
+            parentId: `#addNewStudyPlan`
+        });
     }
 
     $scope.getStudyPlanReadyToSend = function () {
@@ -59,6 +75,13 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
         return {
             major: $scope.studyPlan.major,
             semesters: $scope.studyPlan.semesters.map(sem => getImportantGroupData(sem))
+        }
+    }
+
+    function resetStudyPlan(){
+        $scope.studyPlan = {
+            major: '',
+            semesters: []
         }
     }
 

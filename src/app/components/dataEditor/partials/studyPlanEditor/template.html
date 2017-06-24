@@ -9,8 +9,8 @@
                 <input ng-model="studyPlan.major" type="text" required ng-minlength="2" ng-maxlength="45" required>
             </md-input-container>
             <md-button type="button" ng-click="addSemester()" class="md-primary md-raised">Add semester</md-button>
-            <!--<md-button type="button" ng-click="logStudyPlan()" class="md-primary md-raised">LOG</md-button>
-            <md-button type="button" ng-click="logStudyPlanReadyToSend()" class="md-primary md-raised">LOG2</md-button>-->
+            <!--<md-button type="button" ng-click="logStudyPlan()" class="md-primary md-raised">LOG</md-button>-->
+            <md-button type="button" ng-click="logStudyPlanReadyToSend()" class="md-primary md-raised">LOG POST JSON</md-button>
             <md-tabs md-dynamic-height md-border-bottom ng-if="studyPlan.semesters.length > 0">
                 <md-tab ng-repeat="model in studyPlan.semesters">
                     <md-tab-label>{{ model.name }}</md-tab-label>
