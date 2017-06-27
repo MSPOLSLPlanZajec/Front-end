@@ -19,6 +19,15 @@
         <input ng-model="selectedClassroom.name" type="text" required ng-minlength="1" ng-maxlength="45">
       </md-input-container>
 
+       <md-input-container class="md-block short-input-container" flex-gt-sm>
+        <label>Type</label>
+        <md-select ng-model="selectedClassroom.typeId">
+          <md-option ng-value="lessonType.id" ng-repeat="lessonType in lessonTypes">
+            {{lessonType.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
       <span>
             <md-button type="submit" ng-disabled="editClassroomForm.$invalid" class="md-primary md-raised">Save</md-button>
         </span>
@@ -37,6 +46,15 @@
         <md-input-container class="md-block short-input-container" flex-gt-sm>
           <label>Number</label>
           <input ng-model="newClassroom.name" type="text" required ng-minlength="1" ng-maxlength="45">
+        </md-input-container>
+
+        <md-input-container class="md-block short-input-container" flex-gt-sm>
+          <label>Type</label>
+          <md-select ng-model="newClassroom.typeId" required>
+            <md-option ng-value="lessonType.id" ng-repeat="lessonType in lessonTypes">
+              {{lessonType.name}}
+            </md-option>
+          </md-select>
         </md-input-container>
 
         <span>

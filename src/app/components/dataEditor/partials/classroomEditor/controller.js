@@ -4,6 +4,7 @@ export default async function ($scope, Classroom, Command, FormUtils) {
     async function init() {
         $scope.data = $scope.$parent.data;
         $scope.classrooms = $scope.data.classrooms;
+        $scope.lessonTypes = $scope.data.lessonTypes;
 
         $scope.selectedClassroom = $scope.classrooms[0];
         $scope.newClassroom = {};
@@ -32,7 +33,11 @@ export default async function ($scope, Classroom, Command, FormUtils) {
         try {
             var command = {
                 type: 'add_classroom',
-                data: classroom
+                data: {
+                    id: classroom.id,
+                    name: classroom.name,
+                    typeId: classroom.typeId
+                }
             }
 
             var response = await Command.save(command).$promise;
