@@ -1,25 +1,54 @@
-export default async function ($scope, $state, $stateParams, Teacher, Schedule) {
-    $scope.teachers = [];
-    $scope.id = $stateParams.id;
-    
-    var teachers = await Teacher.query().$promise;
+export default async function ($scope, $state, $q, $stateParams, Teacher, Schedule) {
+    var teachers;
+    $scope.id = $state.params.id;
 
-    teachers.map(async (teacher) => {
-        var { id } = teacher;
+    $scope.getDisplayName = (t) => t && `${t.title} ${t.name} ${t.surname}`;
+
+    if ($scope.id) {
+        var { id } = $scope;
+        let teachers = await Teacher.query().$promise;
+        var teacher = teachers.filter((x) => x.id === $scope.id)[0];
         teacher['schedule'] = await Schedule.get({ id, type: 'teacher' }).$promise;
+        $scope.teacher = teacher;
 
-        if (!teacher.schedule.notScheduled || !teacher.schedule.notScheduled.length) {
-            return;
+        $scope.$apply();
+    }
+
+    var prepareTeachers = (teachers) => {
+        var deferred = $q.defer();
+
+        var recur = async (teacher, i) => {
+            var { id } = teacher;
+            teacher['schedule'] = await Schedule.get({ id, type: 'teacher' }).$promise;
+
+            if (++i < teachers.length) {
+                recur(teachers[i], i);
+            } else {
+                deferred.resolve(teachers);
+            }
         }
 
-        var { title, name, surname } = teacher;
-        teacher['displayName'] = `${title} ${name} ${surname}`;
+        recur(teachers[0], 0);
 
-        $scope.teachers.push(teacher);
-        $scope.$apply();
-    });
+        return deferred.promise;
+    }
 
-    $scope.queryTeachers = (query) => $scope.teachers.filter((x) => x.displayName.indexOf(query) !== -1);
+    $scope.queryTeachers = async (query) => {
+        if (!teachers) {
+            teachers = await Teacher.query().$promise;
+            teachers = await prepareTeachers(teachers);
+        }
+
+        var filtered = teachers.filter((x) => $scope.getDisplayName(x)
+            .toLowerCase()
+            .indexOf(query
+                .toLowerCase()
+            ) !== -1 &&
+            x.schedule.notScheduled.length
+        );
+
+        return filtered;
+    }
 
     $scope.editTeacherSchedule = (teacher) => {
         if (!teacher) {

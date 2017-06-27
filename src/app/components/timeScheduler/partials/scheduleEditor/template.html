@@ -1,11 +1,13 @@
 <div layout="row" style="padding-top: 15px;">
     <div flex="20" style="background: #e1e1e1; padding: 15px; margin-right: 15px;">
         <h4 style="margin-top: 0;">Przydziel zajęcia</h4>
-        <div ng-repeat="course in teacher.schedule.notScheduled">
-            <a href="#" ng-click="showSuggestions(course)">{{course.name}} - {{course.type}}</a>
-        </div>
+        <ul style="margin: 0; padding: 0; list-style: none;">
+            <li ng-repeat="course in teacher.schedule.notScheduled" style="padding: 3px 0;">
+                <a href="#" ng-click="showSuggestions(course)">{{course.name}} - {{course.type}}</a>
+            </li>
+        </ul>
     </div>
     <div flex>
-        <schedule-table schedule="teacher.schedule.schedule" suggestions="suggestions"></schedule-table>
+        <schedule-table schedule="teacher.schedule.scheduled" suggestions="suggestions"></schedule-table>
     </div>
 </div>

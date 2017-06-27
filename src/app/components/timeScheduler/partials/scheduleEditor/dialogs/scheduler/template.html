@@ -13,7 +13,7 @@
         Wybierz salę:
 
         <md-select placeholder="Sala" ng-model="room" md-on-open="loadUsers()" style="min-width: 200px;">
-            <md-option ng-value="room" ng-repeat="room in suggestion.rooms">{{room}}</md-option>
+            <md-option ng-value="room.id" ng-repeat="room in suggestion.possibleClassrooms">{{room.name}}</md-option>
         </md-select>
     </div>
 

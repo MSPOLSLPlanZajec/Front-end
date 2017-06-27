@@ -1,7 +1,1 @@
-export default function () {
-    return {
-        get: function ({ id }) {
-            return App.mockPromise(App.mocks.timeSuggestion.get);
-        }
-    }
-}
+export default ($resource) => $resource(`${App.defaults.apiUrl}/time-suggestion/:id`);
