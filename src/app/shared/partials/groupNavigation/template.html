@@ -11,11 +11,16 @@
 
         <ul ng-show="active.major === $index">
             <li ng-repeat="semester in major.groups">
-                <md-button ng-click="toggleGroup('semester', $index)" class="group-button" layout="row" layout-align="start center">
-                    <span flex>{{semester.name}}</span>
-                    <i ng-show="active.semester !== $index">+</i>
-                    <i ng-show="active.semester === $index">-</i>
-                </md-button>
+                <div layout="row">
+                    <md-button ui-sref="schedule({ id: semester.id, type: 'group' })" class="group-button" layout="row" layout-align="start center">
+                        <span flex>{{semester.name}}</span>
+                    </md-button>
+
+                    <md-button ng-click="toggleGroup('semester', $index)" ng-if="semester.groups.length" class="md-icon-button sub-group-button">
+                        <i ng-show="active.semester !== $index">+</i>
+                        <i ng-show="active.semester === $index">-</i>
+                    </md-button>
+                </div>
 
                 <ul ng-show="active.semester === $index">
                     <li ng-repeat="group in semester.groups">

@@ -1,4 +1,6 @@
 export default function ($scope, Command, $mdDialog, $mdToast) {
+    $scope.getDisplayName = (t) => t && `${t.title} ${t.name} ${t.surname}`;
+
     $scope.submit = async () => {
         var { id } = $scope.course;
         var { day, startsAt } = $scope.suggestion;
