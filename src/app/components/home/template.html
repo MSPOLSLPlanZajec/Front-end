@@ -1,1 +1,13 @@
-This is home
+<div layout-fill layout="column" layout-align="center center">
+    <div class="calendar-icon">
+        <i class="material-icons">event</i>
+    </div>
+    <h1 class="md-display-1">Welcome to Time Table!</h1>
+    
+    <div ng-if="!isAuthenticated()">
+        Browse schedules on the left or click <strong>LOGIN</strong> to see the dashboard.
+    </div>
+    <div ng-if="isAuthenticated()">
+        Browse schedules on the left, add data or create schedules.
+    </div>
+</div>
