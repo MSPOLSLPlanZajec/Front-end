@@ -16,7 +16,7 @@
 						<div class="event-inner">
 							<div class="event-name">{{lesson.name}}</div>
 							<div class="event-meta">
-								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{lesson.teacher.displayName}}</a>
+								<a class="teacher-link" href="#" ui-sref="schedule({ id: lesson.teacher.id, type: 'teacher' })">{{getDisplayName(lesson.teacher)}}</a>
 								<div>{{lesson.type}} / {{lesson.classroom.name}}</div>
 							</div>
 						</div>

@@ -18,6 +18,7 @@ export default function ($scope) {
     $scope.hours = getHours();
 
     $scope.getDayName = (i) => ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'][i];
+    $scope.getDisplayName = (t) => t && `${t.title} ${t.name} ${t.surname}`;
 
     $scope.getItemPosition = (startsAt) => `${startsAt * unitHeight}px`;
     $scope.getItemHeight = (duration) => `${duration * unitHeight}px`;

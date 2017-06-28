@@ -2,11 +2,11 @@ export default function ($scope, Command, $mdDialog, $mdToast) {
     $scope.submit = async () => {
         var { id } = $scope.course;
         var { day, startsAt } = $scope.suggestion;
-        var { room } = $scope;
+        var { classroom } = $scope;
 
         var command = {
             type: 'select_start',
-            data: { id, day, startsAt, room }
+            data: { id, day, startsAt, classroom }
         };
 
         try {
