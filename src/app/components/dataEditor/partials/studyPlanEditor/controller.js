@@ -1,7 +1,7 @@
-export default async function ($scope, StudyPlan, Command, FormUtils) {
+export default async function ($scope, $rootScope, StudyPlan, Command, FormUtils) {
     init()
 
-    async function init(){
+    async function init() {
         $scope.data = $scope.$parent.data;
         $scope.teachers = $scope.data.teachers;
         $scope.degrees = $scope.data.degrees;
@@ -23,17 +23,18 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
         $scope.studyPlan.semesters.push(semester)
     }
 
-    $scope.submitStudyPlan = async function(){
+    $scope.submitStudyPlan = async function () {
         var response = await POST($scope.studyPlan);
         showResponseInfo(response);
-        console.log(response)
 
-        if(response)
+        if (response) {
             resetStudyPlan();
+            $rootScope.$emit('planAdded');
+        }
     }
 
-    async function POST(rawStudyPlan){
-        try{
+    async function POST(rawStudyPlan) {
+        try {
             var command = {
                 type: 'add_study_plan',
                 data: $scope.getStudyPlanReadyToSend(rawStudyPlan)
@@ -41,7 +42,7 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
 
             var response = await Command.save(command).$promise;
             return response;
-        } catch (e){
+        } catch (e) {
             console.log(e);
         }
     }
@@ -78,7 +79,7 @@ export default async function ($scope, StudyPlan, Command, FormUtils) {
         }
     }
 
-    function resetStudyPlan(){
+    function resetStudyPlan() {
         $scope.studyPlan = {
             major: '',
             semesters: []

@@ -1,4 +1,4 @@
-export default async function ($scope, $state, $q, $stateParams, Teacher, Schedule) {
+export default async function ($scope, $rootScope, $state, $q, $stateParams, Teacher, Schedule) {
     var teachers;
     $scope.id = $state.params.id;
 
@@ -64,4 +64,11 @@ export default async function ($scope, $state, $q, $stateParams, Teacher, Schedu
 
         $state.go('timeScheduler.edit', { id });
     }
+
+    $rootScope.$on('courseAssigned', async () => {
+        let { id } = $scope.teacher;
+        $scope.teacher['schedule'] = await Schedule.get({ id, type: 'teacher' }).$promise; 
+        
+        $scope.$apply();
+    });
 }

@@ -2,7 +2,7 @@
     <div class="no-groups" ng-show="!groups.length">
         No groups to show!
     </div>
-    <div ng-repeat="major in groups" ng-show="groups.length">
+    <div ng-repeat="major in groups | orderBy: 'name'" ng-show="groups.length">
         <md-button ng-click="toggleGroup('major', $index)" class="group-button" layout="row" layout-align="start center">
             <span flex>{{major.name}}</span>
             <i ng-show="active.major !== $index">+</i>
@@ -10,7 +10,7 @@
         </md-button>
 
         <ul ng-show="active.major === $index">
-            <li ng-repeat="semester in major.groups">
+            <li ng-repeat="semester in major.groups | orderBy: 'name'">
                 <div layout="row">
                     <md-button ui-sref="schedule({ id: semester.id, type: 'group' })" class="group-button" layout="row" layout-align="start center">
                         <span flex>{{semester.name}}</span>
@@ -23,7 +23,7 @@
                 </div>
 
                 <ul ng-show="active.semester === $index">
-                    <li ng-repeat="group in semester.groups">
+                    <li ng-repeat="group in semester.groups | orderBy: 'name'">
                         <md-button class="group-button" ui-sref="schedule({ id: group.id, type: 'group' })">{{group.name}}</md-button>
                     </li>
                 </ul>

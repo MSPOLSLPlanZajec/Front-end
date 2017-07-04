@@ -16,4 +16,8 @@ export default function ($scope, $mdDialog, $rootScope, TimeSuggestion) {
         $scope.suggestion = suggestion;
         $mdDialog.show(angular.extend(schedulerDialog, { scope : $scope, preserveScope: true }));
     });
+
+    $rootScope.$on('courseAssigned', () => {
+        $scope.suggestions = [];
+    });
 }

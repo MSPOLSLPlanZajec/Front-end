@@ -1,9 +1,9 @@
-export default function ($scope, Command, $mdDialog, $mdToast) {
+export default function ($scope, $rootScope, Command, $mdDialog, $mdToast) {
     $scope.getDisplayName = (t) => t && `${t.title} ${t.name} ${t.surname}`;
 
     $scope.submit = async () => {
         var { id } = $scope.course;
-        var { day, startsAt } = $scope.suggestion;
+        var { day, startsAt, startsAtTime } = $scope.suggestion;
         var { classroom } = $scope;
 
         var command = {
@@ -21,5 +21,7 @@ export default function ($scope, Command, $mdDialog, $mdToast) {
         }
 
         $mdDialog.hide();
+
+        $rootScope.$emit('courseAssigned');
     }
 }

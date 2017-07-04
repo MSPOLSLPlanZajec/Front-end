@@ -25,9 +25,9 @@ export default function ($scope, $rootScope) {
 
     $scope.fullHeight = `${tenHours * unitHeight}px`;
 
-    $scope.chooseSuggestion = (suggestion, day, startsAtIndex) => {
-        const startsAt = getHours()[startsAtIndex]
+    $scope.chooseSuggestion = (suggestion, day) => {
+        const startsAtTime = getHours()[suggestion.startsAt]
             .format('H:mm');
-        $rootScope.$emit('suggestionChosen', angular.extend(suggestion, { day, startsAt }));
+        $rootScope.$emit('suggestionChosen', angular.extend(suggestion, { day, startsAtTime }));
     }
 }
