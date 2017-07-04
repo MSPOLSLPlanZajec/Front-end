@@ -1,5 +1,5 @@
 <form name="time-schedule" class="scheduler-dialog" ng-submit="submit()">
-    <h3>Assign courses</h3>
+    <h3>Assign course</h3>
 
     <div class="section">
         Teacher: <strong>{{getDisplayName(teacher)}}</strong>
@@ -7,6 +7,10 @@
 
     <div class="section">
         Course name: <strong>{{course.name}}</strong>
+    </div>
+
+    <div class="section">
+        Starts at: <strong>{{suggestion.startsAt}}</strong>
     </div>
 
     <div class="section">

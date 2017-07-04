@@ -23,8 +23,7 @@
 					</li>
 
 					<li class="suggestion" ng-repeat="suggestion in suggestions[$index]" ng-style="{'top' : getItemPosition(suggestion.startsAt), 'height' : getItemHeight(suggestion.duration)}"
-						ng-class="lesson.type" layout="column" layout-align="center center" ng-click="chooseSuggestion(suggestion, $parent.$index)">
-						Wybierz
+						ng-class="lesson.type" layout="column" layout-align="center center" ng-click="chooseSuggestion(suggestion, $parent.$index, $index)">						
 					</li>
 				</ul>
 			</li>
